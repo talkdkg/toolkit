@@ -1,0 +1,73 @@
+<html> 
+<body> 
+ 
+ 
+<script> 
+function favAnimal(button) {
+alert('You like '+button.value+'s.');
+}
+ 
+var s = "Eat to live, but do not live to eat";
+var pattern = new RegExp("not$");
+document.write(pattern.exec(s));
+ 
+ 
+document.write('<br/><br/>');
+</script> 
+<input type="radio" name="marsupial" value="kangaroo" onchange="favAnimal(this)">Kangaroo
+<br /><input type="radio" name="marsupial" value="Opossum" onchange="favAnimal(this)">Opossum
+<br /><input type="radio" name="marsupial" value="Tasmanian Tiger" onchange="favAnimal(this)">Tasmanian Tiger
+ 
+ 
+<div id="result"> </div> 
+ 
+<script type="text/javascript"> 
+ 
+function ajaxRequest() {
+    var activexmodes=["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"] //activeX versions to check for in IE
+    if (window.ActiveXObject) { //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
+        for (var i=0; i<activexmodes.length; i++) {
+            try {
+                return new ActiveXObject(activexmodes[i]);
+               } catch(e) {
+                //suppress error
+            }
+        }
+    }
+    else if (window.XMLHttpRequest) // if Mozilla, Safari etc
+        return new XMLHttpRequest();
+    else
+        return false;
+}
+ 
+var mygetrequest = new ajaxRequest();
+ 
+mygetrequest.onreadystatechange = function() {
+    if (mygetrequest.readyState==4) {
+        if (mygetrequest.status==200 || window.location.href.indexOf("http")==-1) {
+            var jsondata = eval("("+mygetrequest.responseText+")") //retrieve result as an JavaScript object
+            var rssentries=jsondata.items;
+ 
+            var output='<ul>'
+            for (var i=0; i<rssentries.length; i++) {
+                output+='<li>'
+                output+='<a href="'+rssentries[i].link+'">'
+                output+=rssentries[i].title+'</a>'
+                output+='</li>'
+            }
+            output+='</ul>'
+            document.getElementById("result").innerHTML=output;
+        } else {
+            alert("An error has occured making the request")
+        }
+    }
+}
+ 
+mygetrequest.open("GET", "sample.json", true)
+mygetrequest.send(null)
+ 
+</script> 
+ 
+ 
+</body> 
+</html>

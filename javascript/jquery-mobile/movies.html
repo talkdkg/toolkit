@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="stylesheet" href="jqm/jquery.mobile-1.0rc1.css"/>
+<script src="jqm/jquery-1.6.3.min.js"></script>
+<script src="jqm/jquery.mobile-1.0rc1.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="home">
+
+	<div data-role="header"><h1>movies</h1></div>
+	<div data-role="content">
+		<ul data-role="listview" data-split-icon="gear">
+			<li>
+			<a href="#starwars">Star Wars</a>
+			<a href="http://external">View External</a>
+			</li>
+			<li>
+			<a href="#beta">Beta</a>
+			<a href="http://external"></a>
+
+			</li>
+		</ul>
+		<br/>
+		<p><a href="#page2" data-role="button" data-transition="flip">Go Page 2</a></p>
+		<p>
+			<input type="submit" value="Submit"/>
+			<input type="button" value="Button"/>
+			<input type="reset" value="Reset"/>
+		</p>
+
+	</div>
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+
+<div data-role="page" id="page2">
+
+	<div data-role="header"><h1>Page 2</h1></div>
+	<div data-role="content">
+		<ul data-role="listview" data-split-icon="gear">
+			<li>
+			<a href="#starwars">Star Wars</a>
+			<a href="http://external">View External</a>
+			</li>
+			<li>
+			<a href="#beta">Beta</a>
+			<a href="http://external"></a>
+
+			</li>
+		</ul>
+		<br/>
+		<p><a href="#page3" data-role="button" data-transition="slide">Go Page 3</a></p>
+		<p><a href="#about" data-role="button" data-rel="dialog" data-transition="slideup">About this app</a></p> 
+
+	</div>
+</div>
+
+
+<div data-role="page" id="page3">
+
+	<div data-role="header"><h1>Page 3</h1></div>
+	<div data-role="content">
+		<ul data-role="listview" data-split-icon="gear">
+			<li>
+			<a href="#starwars">Star Wars</a>
+			<a href="http://external">View External</a>
+			</li>
+
+			<li>
+			<a href="#beta">Beta</a>
+			<a href="http://external"></a>
+			</li>
+		</ul>
+		<br/>
+		<p><a href="#page3" data-role="button">Go Page 3</a></p>
+
+	</div>
+</div>
+
+
+<div data-role="page" id="about">
+
+	<div data-role="header"><h1>About</h1></div>
+	<div data-role="content">
+	<p>This is the about page!</p>
+
+	</div>
+</div>
+
+</boby>
+</html>
