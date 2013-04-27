@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>JS Bin</title>
+<script type="text/javascript">
+
+// k_ js library of functions
+function k_gelbi(id) {
+  return document.getElementById(id);
+}
+
+function k_create(tag) {
+  return document.createElement(tag);
+}
+
+function k_clone(node, id) {
+  var elem = node.cloneNode(true);
+  if ((id !== "") && (id !== null)) {
+    elem.setAttribute("id", id);
+  } else {
+    elem.removeAttribute("id");
+  }
+  return elem;
+}
+
+function k_mkTemplate(node, id) {
+  var elem = k_clone(node, id);
+  node.parentNode.removeChild(node);
+  return elem;
+}
+
+function populatePetType(obj) {   
+  for (var key in obj) {
+    var row = k_clone(k_gelbi("pet_type_option"), "");
+    row.setAttribute("value", key);
+    row.innerHTML = obj[key];
+    k_gelbi("pet_type_select").appendChild(row);          
+  }  
+}
+
+function updateTable(flyers) {
+  var template = k_clone(k_gelbi("pet_row"), "");
+  k_gelbi("pet_ul").innerHTML = "";      
+  
+  for (var i=0; i < flyers.length; i++) {
+    var flyer = flyers[i];    
+    var line = k_create("li");    
+    var anchor = k_create("a");    
+    anchor.innerHTML = flyer.pet_name + " ("+ flyer.pet_type +")";
+    anchor.setAttribute("href", '#flyer?id=' + flyer.id);
+    line.appendChild(anchor);
+    k_gelbi("pet_ul").appendChild(line);    
+  }
+}
+
+// vars and main int
+
+var flyers = [{ "id" : 444, "pet_type" : "Cat", "pet_name" : "Blackie" }, { "id" : 666, "pet_type" : "Dog", "pet_name" : "Max" }, { "id" : 87, "pet_type" : "Fish", "pet_name" : "Rummy" }];
+
+function initPage() {
+   updateTable(flyers);
+}
+
+</script>
+</head>
+<body id="body" onload="initPage()">
+  
+<div data-role="page" id="list-flyers">
+
+  <div data-role="header"><h1>List of Pets</h1></div>
+  <div data-role="content">
+    <ul data-role="listview" data-split-icon="gear" id="pet_ul">
+      <li id="pet_row" style="">
+        <a href="#flyer" id="pet_name">Star Wars</a>
+      </li>
+    </ul>
+    <br/>
+  </div>
+
+</div><!-- page list-flyers -->
+</body>
+</html>
