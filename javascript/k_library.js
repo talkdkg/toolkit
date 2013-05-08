@@ -47,30 +47,30 @@ function ajaxRequest() {
 }
  
 function initAjax(uri, callback) {
-	var ajax = new ajaxRequest(); 	
-	ajax.onreadystatechange = function() {	
-    	if (ajax.readyState == 4 && ajax.status == 200) {
-			var jsondata = eval('(' + ajax.responseText + ')');  
-			if (callback) {   
-				callback(jsondata); 
-			}     	
-    	}
-	}
-	ajax.open("GET", uri, true);
-	ajax.send(null);
+   var ajax = new ajaxRequest(); 	
+   ajax.onreadystatechange = function() {	
+      if (ajax.readyState == 4 && ajax.status == 200) {
+         var jsondata = eval('(' + ajax.responseText + ')');  
+         if (callback) {   
+            callback(jsondata); 
+         }     	
+      }
+   }
+   ajax.open("GET", uri, true);
+   ajax.send(null);
 }
 
 function processJson(records) {    
-	for (var i=0; i < records.length; i++) {
-		var rec = records[i];    
-		var row = k_create("tr", "");    
-		row.appendChild(k_create("td", rec.id, "", ""));
-		row.appendChild(k_create("td", rec.google_id , "", ""));  
-		row.appendChild(k_create("td", rec.task_title, "", ""));
-		row.appendChild(k_create("td", rec.task_type, "", ""));
-		row.appendChild(k_create("td", rec.task_desc, "", ""));
-		k_gelbi("task_table").appendChild(row);    
-	}
+   for (var i=0; i < records.length; i++) {
+      var rec = records[i];    
+      var row = k_create("tr", "");    
+      row.appendChild(k_create("td", rec.id, "", ""));
+      row.appendChild(k_create("td", rec.google_id , "", ""));  
+      row.appendChild(k_create("td", rec.task_title, "", ""));
+      row.appendChild(k_create("td", rec.task_type, "", ""));
+      row.appendChild(k_create("td", rec.task_desc, "", ""));
+      k_gelbi("task_table").appendChild(row);    
+   }
 }
 
 /*
