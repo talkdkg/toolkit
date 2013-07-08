@@ -8,8 +8,17 @@ var KJS = (function() {
      return num + 1; 
   };  
   
-  api.getid = function(id) {
+  api.id = function(id) {
     return document.getElementById(id);
+  };
+  
+  // makeTag("H1") to make an element with tag
+  api.makeTag = function(tag) {
+  	return document.createElement(tag);
+  };
+  
+  api.makeText = function(text) {
+  	return document.createTextNode(text);
   };
 
   api.clone = function(node, id) {
