@@ -36,7 +36,25 @@ var KJS = (function() {
     node.parentNode.removeChild(node);
     return elem;
   };  
- 
+
+  api.swap (arr, a, b) {
+    var temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+  }
+
+  api.shuffle (arr) {
+     var N = arr.length;
+
+     for (var i = 0; i < N; i++) {
+       var j = Math.floor(Math.random() * N);
+       console.log(j);
+       api.swap(arr, i, j); 
+       console.log(arr);
+     }
+     return arr;  
+  }
+
   return api;
 
 })();
