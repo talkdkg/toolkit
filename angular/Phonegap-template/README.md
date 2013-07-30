@@ -1,6 +1,8 @@
 PhoneGap-AngularJS Template
 ===========================
 
+* https://github.com/lancevo/PhoneGap-AngularJS
+
 Built it with PhoneGap
 
 Included:
