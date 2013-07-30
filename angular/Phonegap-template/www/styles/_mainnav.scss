@@ -1,0 +1,76 @@
+#main-nav {
+  width: 100%;
+  top: 45px;
+  // prevent animation when view is loaded
+  left: -100%;
+  position: absolute;
+  z-index: 50;
+
+  &.animate {
+    left: 0;
+  }
+
+  &.animate.slide-in {
+    left: 0;
+    -webkit-animation-name: leftNavSlideIn;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  &.animate.slide-out {
+    left: -100%;
+    -webkit-animation-name: leftNavSlideOut;
+    -webkit-animation-duration: .25s;
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  // main nav style
+  .nav {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    background: #e9edf0;
+    // a little bit higher than .fill-nav to show rounded corners with .fill-nav background
+    z-index: 52;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+  }
+  // nav links
+  .nav li {
+    border-bottom: 1px solid #ccc;
+  }
+
+  // black bar on the right side
+  .fill-nav {
+    // little wider to cover the main nav rounded corners
+    width: 25%;
+    height: 100%;
+    background: #000;
+    opacity: 0.9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    // prevent underneath content scrolling
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+}
+
+@-webkit-keyframes leftNavSlideIn {
+  0% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0%, 0, 0);
+  }
+}
+
+@-webkit-keyframes leftNavSlideOut {
+  0% {
+    -webkit-transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0%, 0, 0);
+  }
+}
