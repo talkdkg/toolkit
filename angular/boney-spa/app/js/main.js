@@ -10,7 +10,17 @@ app.config(function ($routeProvider) {
                                       loadData: deltaCtrl.loadData,
                                    } 
                                  })     
+                 .when('/error', { templateUrl:"delta.html", 
+                                   controller:"DeltaCtrl",
+                                   resolve: {
+                                      makeError: deltaCtrl.makeError,
+                                   } 
+                                 })     
                  .otherwise( {template: "404 Not Found!"} )     
+})
+
+app.run(function ($rootScope, $log) {
+   $rootScope.$log = $log;
 })
 
 // a service
@@ -22,6 +32,18 @@ app.factory('DataService', function() {
 app.filter('reverse', function() {
    return function (text) {
       return text.split("").reverse().join("");
+   }
+})
+
+app.directive("error", function ($rootScope) {
+   return {
+      restrict:"E",
+      template:'<div class="alert-box alert" ng-show="isError">Error!!!</div>',
+      link: function (scope) {
+         $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
+            scope.isError = true;
+         })
+      }
    }
 })
 
@@ -55,6 +77,12 @@ deltaCtrl.loadData = function ($q, $timeout) {
    return defer.promise;
 }
 
-
+deltaCtrl.makeError = function ($q, $timeout) {
+   var defer = $q.defer();
+   $timeout(function () {
+      defer.reject();
+   }, 500);
+   return defer.promise;
+}
 
 
