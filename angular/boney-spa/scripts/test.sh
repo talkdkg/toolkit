@@ -1,5 +1,9 @@
 #!/bin/bash
 
+/*
+ * Run this script from the root dir:  ./scripts/test.sh
+ */
+
 BASE_DIR=`dirname $0`
 
 echo ""

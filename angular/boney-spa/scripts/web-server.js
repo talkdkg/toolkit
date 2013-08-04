@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/*
+ * Run this script from the root dir:  ./scripts/web-server.js
+ */
+
 var util = require('util'),
     http = require('http'),
     fs = require('fs'),
