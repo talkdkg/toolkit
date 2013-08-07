@@ -31,14 +31,14 @@ function Stack() {
 var algo = (function() {
 
   var api = {};
-  
-  api.swap (arr, a, b) {
-     var temp = arr[a];
+ 
+  api.swap = function (arr, a, b) {
+     temp = arr[a];
      arr[a] = arr[b];
      arr[b] = temp;
   }
 
-  api.shuffle (arr) {
+  api.shuffle = function (arr) {
      var N = arr.length;
 
      for (var i = 0; i < N; i++) {
@@ -50,7 +50,7 @@ var algo = (function() {
       return arr;  
   }
     
-  function insertionSort(items) {
+  api.insertionSort = function (items) {
      var N = items.length;
      for (var i = 0; i < N; i++) {
          for (var j = i; j > 0; j--) {
@@ -64,7 +64,7 @@ var algo = (function() {
      return items;
   }
   
-  function selectionSort(items) {
+  api.selectionSort = function (items) {
      var N = items.length; 
      var min;
      for (var i = 0; i < N; i++) {
