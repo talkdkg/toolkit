@@ -1,8 +1,15 @@
+/* Usages
+ * Here is an example request: curl -X POST -d "{\"test\": \"that\"}" http://localhost:7000/test
+ */
+
+
 package main
 
 import (
+   "encoding/json"
    "html/template"
    "io/ioutil"
+   "log"
    "net/http"
    "os"
    "regexp"
@@ -80,15 +87,33 @@ func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
    renderTemplate(w, "view", p)
 }
 
+type test_struct struct {
+    Test string
+}
+
+func testHandler(rw http.ResponseWriter, req *http.Request) {
+    body, err := ioutil.ReadAll(req.Body)
+    if err != nil {
+        //panic()
+    }
+    log.Println(string(body))
+    var t test_struct
+    err = json.Unmarshal(body, &t)
+    if err != nil {
+        //panic()
+    }
+    log.Println(t.Test)
+}
 
 func main() {
    http.HandleFunc("/edit/", makeHandler(editHandler))
    http.HandleFunc("/save/", makeHandler(saveHandler))
    http.HandleFunc("/view/", makeHandler(viewHandler))
+   http.HandleFunc("/test", testHandler)
    http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
    http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("img"))))
    http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("js"))))
    http.Handle("/lib/", http.StripPrefix("/lib/", http.FileServer(http.Dir("lib"))))
-   http.ListenAndServe(":7000", nil)
+   log.Fatal(http.ListenAndServe(":7000", nil))
 }
 
