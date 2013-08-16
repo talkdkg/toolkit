@@ -13,6 +13,9 @@ the original Ruby code again.
 
 [langs]: https://lh5.googleusercontent.com/LOnAyEDvLI8WTEEGD3VZ4NCytt0E80Y5b_tBYkVYTYzGKgLVX-muc1ZOhaCZl2wLPmELjq8RxUZ9jNYtDuiTm8ihYuwjLeheLy0YFgDZya5zD4dcfJNa0kw_
 
+<img src="https://lh5.googleusercontent.com/0E4nqO6llKpEu49I2Z37E8n_70MvzsNvyqjiOu-E-7QJvRZ3gKTJXB-MCBGj3sXQUBl8fQcvOU656PvZxFWNykhJS-N2amjCdaXceRNbenYY7TAXup6xx48-" height="531" width="600" />
+
+
 ### Usage
 
 #### 1. Install all interpreters/compilers.
