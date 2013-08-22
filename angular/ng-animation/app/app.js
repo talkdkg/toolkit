@@ -11,13 +11,26 @@ angular.module('App', [])
     appLoading.ready();
   })
 
-  .controller('AppRepeatCtrl', function($scope, $filter, appLoading) {
-    $scope.tweets = [];
-    var cache = [], filter = $filter('filter');
-
+  .controller('HomeCtrl', function($scope, $filter, appLoading) {
+     var filter = $filter('filter');  
+     $scope.tweets = [
+        { id_str: "foo", profile_image_url: "https://si0.twimg.com/profile_images/1301262251/thunderhill_boston_terrier_normal.jpg",
+           text: "Cras sit amet nibh libero." },
+        { id_str: "kyle", profile_image_url: "https://si0.twimg.com/profile_images/378800000142862904/dfd27fcedb53b6781d9da5657c66502c_normal.jpeg",
+           text: "U vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla" }, 
+        { id_str: "bob", profile_image_url: "https://si0.twimg.com/profile_images/2320767706/d0qthl90f6hlh60eu6dk_normal.jpeg",
+           text: "Donec lacinia congue felis in faucibus, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo." },
+        { id_str: "jim", profile_image_url: "https://si0.twimg.com/profile_images/2176846885/-5-1_normal.jpeg",
+           text: "Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus." }       
+     ];
+     var cache = $scope.tweets;
+     $scope.filter = function(q) {
+        $scope.tweets = filter(cache, q);
+     };          
+     appLoading.ready();
   })
 
-  .controller('AppShowHideCtrl', function($scope, appLoading) {
+  .controller('CalendarCtrl', function($scope, appLoading) {
     function makeCell(number, type) {
       return { number: number, type: type};
     };
@@ -81,51 +94,47 @@ angular.module('App', [])
     appLoading.ready();
   })
 
-  .controller('AppSwitchCtrl', function($scope, appLoading) {
+  .controller('NewsCtrl', function($scope, appLoading) {
     appLoading.ready();
   })
 
-  .controller('AppIncludeCtrl', function($scope, appLoading) {
-    appLoading.ready();
-  })
 
-  .config(function($routeProvider) {
-    $routeProvider.when('/ng-repeat', {
-      controller : 'AppRepeatCtrl',
-      templateUrl : './templates/repeat_tpl.html'
-    }).when('/ng-show-hide', {
-      controller : 'AppShowHideCtrl',
-      templateUrl : './templates/show_hide_tpl.html'
-    }).when('/ng-switch', {
-      controller : 'AppSwitchCtrl',
-      templateUrl : './templates/switch_tpl.html'
-    }).otherwise({
-      redirectTo: '/ng-repeat'
-    });
-  })
 
-  .factory('appLoading', function($rootScope) {
-    var timer;
-    return {
-      loading : function() {
-        clearTimeout(timer);
-        $rootScope.status = 'loading';
-        if(!$rootScope.$$phase) $rootScope.$apply();
-      },
-      ready : function(delay) {
-        function ready() {
-          $rootScope.status = 'ready';
-          if(!$rootScope.$$phase) $rootScope.$apply();
-        }
+   .config(function($routeProvider) {
+      $routeProvider.when('/home', {
+         controller : 'HomeCtrl',
+         templateUrl : './html/home_tpl.html'
+      }).when('/calendar', {
+         controller : 'CalendarCtrl',
+         templateUrl : './html/calendar_tpl.html'
+      }).when('/news', {
+         controller : 'NewsCtrl',
+         templateUrl : './html/news_tpl.html'
+      }).otherwise({
+         redirectTo: '/home'
+      });
+   })
 
-        clearTimeout(timer);
-        delay = delay == null ? 500 : false;
-        if(delay) {
-          timer = setTimeout(ready, delay);
-        }
-        else {
-          ready();
-        }
-      }
-    };
-  });
+   .factory('appLoading', function($rootScope) {
+      var timer;
+      return {
+         loading : function() {
+            clearTimeout(timer);
+            $rootScope.status = 'loading';
+            if(!$rootScope.$$phase) $rootScope.$apply();
+         },
+         ready : function(delay) {
+            function ready() {
+               $rootScope.status = 'ready';
+               if(!$rootScope.$$phase) $rootScope.$apply();
+            }
+            clearTimeout(timer);
+            delay = delay == null ? 500 : false;
+            if(delay) {
+               timer = setTimeout(ready, delay);
+            } else {
+               ready();
+            }
+         }
+      };
+   });
