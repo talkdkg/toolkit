@@ -2,7 +2,6 @@
  * Here is an example request: curl -X POST -d "{\"test\": \"that\"}" http://localhost:7000/test
  */
 
-
 package main
 
 import (
