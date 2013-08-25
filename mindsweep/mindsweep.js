@@ -38,10 +38,6 @@ Tile.prototype.show = function () {
    return out; 
 };
 
-Tile.prototype.getNeighbors = function() {
-   var arr = Array();
-};
-
 Tile.prototype.updateTouch = function(cnt) {
    if (this.status === "BOMB") {
    } else {
@@ -70,7 +66,7 @@ Grid.prototype.setup = function () {
    }
 };
 
-//Console log the state of the Grid; return a json
+//Console log the state of the Grid 
 Grid.prototype.cheat = function () {
    var header = "        ";
    if (this.y > 10) header = header + " "; 
@@ -88,7 +84,7 @@ Grid.prototype.cheat = function () {
    }
 };
 
-//Console log the state of the Grid; return a json
+//Console log the state of the Grid
 Grid.prototype.show = function () {
    var header = "        ";
    if (this.y > 10) header = header + " "; 
@@ -160,11 +156,14 @@ function Game(x, y) {
 }
 
 function checkZeroAndPush(t, arr) {
-   //var t = this.tiles[i-1][j-1];
    if ((t.touch === 0) && (t.status !== "CHECKED")) {
       t.status = "CHECKED";
       arr.push(t);
       console.log("pushing to checkArr: " + t.x + ", " + t.y);
+   }
+   if ((t.touch > 0) && (t.status !== "BOMB")) {
+      t.status = "CHECKED";
+      console.log("marked adjacent : " + t.x + ", " + t.y);
    }
 }
 
@@ -185,11 +184,9 @@ Game.prototype.click = function (x, y) {
       }
       var tile;
       while ((tile = checkArr.pop()) != null) {
-         console.log("This tile : tile.x " + tile.x );
          console.log("This tile :" +  tile.print());
          var i = parseInt(tile.x);
          var j = parseInt(tile.y);
-         console.log("Typof j " + typeof(j) );
          tile.status = "CHECKED";
          //2D Array, looping through neighbors
          if (this.grid.isInBounds(i -1,j -1)) { checkZeroAndPush(this.grid.tiles[i -1][j -1], checkArr); }
