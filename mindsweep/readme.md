@@ -66,6 +66,10 @@ object returned from cheat()
 {x: 7, y: 5, show: "*"}, {x: 4, y: 7, show: "*"}, {x: 6, y: 7, show: "*"}, {x: 7, y: 7, show: "*"}]
 ```
 
+Notes
+-----
+<img src="https://lh6.googleusercontent.com/p_RWhFwdGRuIbD3TtkStUqfhOagyfM86ouJbH9mTHNZRdZwA-7g999pLip6jIJXoZtWfWKOP5d-cGxWRbP16PGj307fOpJ_ZgPZNxSi2hu0g07Wc8MGCZuLINg"  width="600" />
+
 Source
 ------
 Written by Kyle Dinh, 2013
