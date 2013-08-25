@@ -54,9 +54,9 @@ function Grid(x, y) {
 }
 
 Grid.prototype.setup = function () {
-   var arr = new Array(this.x);
+   var arr = [this.x];
    for (var i=0; i < this.x; i++) {
-       arr[i] = new Array(this.y); 
+       arr[i] = [this.y]; 
    }
    this.tiles = arr;
    for (var i=0; i < this.x; i++) {
@@ -69,6 +69,7 @@ Grid.prototype.setup = function () {
 //Console log the state of the Grid 
 Grid.prototype.cheat = function () {
    var header = "        ";
+   var out = [];
    if (this.y > 10) header = header + " "; 
    for (var i=0; i < this.x; i++) {
       header = header + i + "  ";
@@ -79,14 +80,19 @@ Grid.prototype.cheat = function () {
       var row = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
       for (var i=0; i < this.x; i++) {
          row = row + "[" + this.tiles[i][j].cheat() + "] "; 
+         if (this.tiles[i][j].status === "BOMB") {
+            out.push({x: i, y: j, show: this.tiles[i][j].cheat()});
+         }
       } 
       console.log(row);
    }
+   return out;
 };
 
 //Console log the state of the Grid
 Grid.prototype.show = function () {
    var header = "        ";
+   var out = [];
    if (this.y > 10) header = header + " "; 
    for (var i=0; i < this.x; i++) {
       header = header + i + "  ";
@@ -97,9 +103,11 @@ Grid.prototype.show = function () {
       var row = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
       for (var i=0; i < this.x; i++) {
          row = row + "[" + this.tiles[i][j].show() + "] "; 
+         out.push({x: i, y: j, show: this.tiles[i][j].show()});
       } 
       console.log(row);
    }
+   return out;
 };
 
 //Switch some Tiles to Bomb tiles 
@@ -178,7 +186,7 @@ Game.prototype.click = function (x, y) {
       return "BOMB";
    } else {
       this.grid.tiles[x][y].status = "CHECKED";
-      var checkArr = new Array();
+      var checkArr = [];
       if (this.grid.tiles[x][y].touch === 0) {
          checkArr.push(this.grid.tiles[x][y]);
       }
@@ -211,12 +219,12 @@ Game.prototype.start = function (numBombs) {
 
 Game.prototype.show = function () {
    console.log("show:");
-   this.grid.show();
+   return this.grid.show();
 };
 
 Game.prototype.cheat = function () {
    console.log("cheat view:");
-   this.grid.cheat();
+   return this.grid.cheat();
 };
 
 // LIBRARY
