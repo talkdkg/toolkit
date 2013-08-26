@@ -11,10 +11,12 @@
  * 
  */
 
-// Tile
+/*jslint devel: true, sloppy: true, white: true, indent: 3 */
+//http://www.javascriptlint.com/online_lint.php
 
+// Tile
 function Tile(status, x, y) {
-   this.status = (status) ? status : "UNKNOWN";
+   this.status = status || "UNKNOWN";
    this.touch = 0;
    this.x = x;
    this.y = y;
@@ -25,22 +27,21 @@ Tile.prototype.print = function () {
 };
 
 Tile.prototype.cheat = function () {
-   var out = (this.touch) ? this.touch : "=";
-   if (this.touch !== "undefined") out = this.touch;
-   if (this.status === "BOMB") out = "*";
+   var out = this.touch || "=";
+   if (this.touch !== "undefined") { out = this.touch; }
+   if (this.status === "BOMB") { out = "*"; }
    return out; 
 };
 
 Tile.prototype.show = function () {
    var out = "=";
-   if ((this.status === "CHECKED") && (this.touch > 0)) out = this.touch;
-   if ((this.status === "CHECKED") && (this.touch === 0)) out = " ";
+   if ((this.status === "CHECKED") && (this.touch > 0)) { out = this.touch; }
+   if ((this.status === "CHECKED") && (this.touch === 0)) { out = " "; }
    return out; 
 };
 
 Tile.prototype.updateTouch = function(cnt) {
-   if (this.status === "BOMB") {
-   } else {
+   if (this.status !== "BOMB") {
       this.touch = cnt;
    } 
 };
@@ -50,17 +51,18 @@ Tile.prototype.updateTouch = function(cnt) {
 function Grid(x, y) {
    this.x = x;
    this.y = y;
-   this.tiles;
+   this.tiles = null;
 }
 
 Grid.prototype.setup = function () {
+   var i, j;
    var arr = [this.x];
-   for (var i=0; i < this.x; i++) {
+   for (i=0; i < this.x; i++) {
        arr[i] = [this.y]; 
    }
    this.tiles = arr;
-   for (var i=0; i < this.x; i++) {
-      for (var j=0; j < this.y; j++) {
+   for (i=0; i < this.x; i++) {
+      for (j=0; j < this.y; j++) {
          this.tiles[i][j] = new Tile("UNKNOWN", i, j);
       }
    }
@@ -68,17 +70,18 @@ Grid.prototype.setup = function () {
 
 //Console log the state of the Grid 
 Grid.prototype.cheat = function () {
+   var i, j;
    var header = "        ";
    var out = [];
-   if (this.y > 10) header = header + " "; 
-   for (var i=0; i < this.x; i++) {
+   if (this.y > 10) { header = header + " "; }
+   for (i=0; i < this.x; i++) {
       header = header + i + "  ";
-      if (i < 10) header += " ";
+      if (i < 10) { header += " "; }
    }
    console.log(header);
-   for (var j=0; j < this.y; j++) {
+   for (j=0; j < this.y; j++) {
       var row = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
-      for (var i=0; i < this.x; i++) {
+      for (i=0; i < this.x; i++) {
          row = row + "[" + this.tiles[i][j].cheat() + "] "; 
          if (this.tiles[i][j].status === "BOMB") {
             out.push({x: i, y: j, show: this.tiles[i][j].cheat()});
@@ -91,17 +94,18 @@ Grid.prototype.cheat = function () {
 
 //Console log the state of the Grid
 Grid.prototype.show = function () {
+   var i, j;
    var header = "        ";
    var out = [];
-   if (this.y > 10) header = header + " "; 
-   for (var i=0; i < this.x; i++) {
+   if (this.y > 10) { header += " "; } 
+   for (i=0; i < this.x; i++) {
       header = header + i + "  ";
-      if (i < 10) header += " ";
+      if (i < 10) { header += " "; }
    }
    console.log(header);
-   for (var j=0; j < this.y; j++) {
-      var row = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
-      for (var i=0; i < this.x; i++) {
+   for (j=0; j < this.y; j++) {
+      var row = (j < 10) ? "row  " + j + "  " : "row " + j + "  "; 
+      for (i=0; i < this.x; i++) {
          row = row + "[" + this.tiles[i][j].show() + "] "; 
          out.push({x: i, y: j, show: this.tiles[i][j].show()});
       } 
@@ -112,13 +116,14 @@ Grid.prototype.show = function () {
 
 //Switch some Tiles to Bomb tiles 
 Grid.prototype.layBombs = function (numBombs) {
+   var i;
    var bombArr = [];
    var size = this.x * this.y; 
-   for (var i=0; i < size; i++) {
+   for (i=0; i < size; i++) {
        bombArr.push(i);
    }
    bombArr = shuffleArray(bombArr);
-   for (var i=0; i < numBombs; i++) {
+   for (i=0; i < numBombs; i++) {
       var bomb = bombArr.pop();
       var row = Math.floor(bomb / this.x);   
       var mod = bomb % this.x;
@@ -127,31 +132,30 @@ Grid.prototype.layBombs = function (numBombs) {
 };
 
 Grid.prototype.isInBounds = function (x, y) {
-   console.log("checking InBound " + x + ", " + y);
-   if ((x < 0) || (x >= this.x)) return false;
-   if ((y < 0) || (y >= this.y)) return false;
+   //console.log("checking InBound " + x + ", " + y);
+   if ((x < 0) || (x >= this.x)) { return false; }
+   if ((y < 0) || (y >= this.y)) { return false; }
    return true;
-}
+};
 
+// Updates the tiles touh field with # of bombs that are adjacent
 Grid.prototype.updateTiles = function () {
    for (var j=0; j < this.y; j++) {    // row
       for (var i=0; i < this.x; i++) { // col
          var cnt = 0;
-         if (this.isInBounds(i -1,j -1)) { if (this.tiles[i -1][j -1].status === "BOMB") cnt++; }
-         if (this.isInBounds(i   ,j -1)) { if (this.tiles[i   ][j -1].status === "BOMB") cnt++; }
-         if (this.isInBounds(i +1,j -1)) { if (this.tiles[i +1][j -1].status === "BOMB") cnt++; }
-         if (this.isInBounds(i -1,j   )) { if (this.tiles[i -1][j   ].status === "BOMB") cnt++; }
-         if (this.isInBounds(i +1,j   )) { if (this.tiles[i +1][j   ].status === "BOMB") cnt++; }
-         if (this.isInBounds(i -1,j +1)) { if (this.tiles[i -1][j +1].status === "BOMB") cnt++; }
-         if (this.isInBounds(i   ,j +1)) { if (this.tiles[i   ][j +1].status === "BOMB") cnt++; }
-         if (this.isInBounds(i +1,j +1)) { if (this.tiles[i +1][j +1].status === "BOMB") cnt++; }
+         if (this.isInBounds(i -1,j -1)) { if (this.tiles[i -1][j -1].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i   ,j -1)) { if (this.tiles[i   ][j -1].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i +1,j -1)) { if (this.tiles[i +1][j -1].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i -1,j   )) { if (this.tiles[i -1][j   ].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i +1,j   )) { if (this.tiles[i +1][j   ].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i -1,j +1)) { if (this.tiles[i -1][j +1].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i   ,j +1)) { if (this.tiles[i   ][j +1].status === "BOMB") {cnt++;} }
+         if (this.isInBounds(i +1,j +1)) { if (this.tiles[i +1][j +1].status === "BOMB") {cnt++;} }
          console.log("updatingTouch " + i + ", " + j + " with " + cnt);
          this.tiles[i][j].updateTouch(cnt);
       }
    }
 };
-
-
 
 /*
  * Game object
@@ -164,7 +168,7 @@ function Game(x, y) {
 }
 
 function checkZeroAndPush(t, arr) {
-   if ((t.touch === 0) && (t.status !== "CHECKED")) {
+   if ((t.touch === 0) && (t.status !== "CHECKED") && (t.status !== "BOMB")) {
       t.status = "CHECKED";
       arr.push(t);
       console.log("pushing to checkArr: " + t.x + ", " + t.y);
@@ -192,13 +196,12 @@ Game.prototype.click = function (x, y) {
       }
       var tile;
       while ((tile = checkArr.pop()) != null) {
-         console.log("This tile :" +  tile.print());
-         var i = parseInt(tile.x);
-         var j = parseInt(tile.y);
+         var i = tile.x;
+         var j = tile.y;
          tile.status = "CHECKED";
          //2D Array, looping through neighbors
          if (this.grid.isInBounds(i -1,j -1)) { checkZeroAndPush(this.grid.tiles[i -1][j -1], checkArr); }
-         if (this.grid.isInBounds(i   ,j -1)) { checkZeroAndPush(this.grid.tiles[i  ][j  -1], checkArr); }
+         if (this.grid.isInBounds(i   ,j -1)) { checkZeroAndPush(this.grid.tiles[i   ][j -1], checkArr); }
          if (this.grid.isInBounds(i +1,j -1)) { checkZeroAndPush(this.grid.tiles[i +1][j -1], checkArr); }
          if (this.grid.isInBounds(i -1,j   )) { checkZeroAndPush(this.grid.tiles[i -1][j   ], checkArr); }
          if (this.grid.isInBounds(i +1,j   )) { checkZeroAndPush(this.grid.tiles[i +1][j   ], checkArr); }
