@@ -1,8 +1,29 @@
 Mindsweep
 ---------
-A minesweeper game written in javascript. The data structure is simple: a Game contains a Grid that contains a 2D array of Tiles. The Tiles contain all the state information for the game play. As clicks are made the "status" of the Tiles are changed from "UNKNOWN" to "CHECKED".  Unless of course the status is "BOMB", which then is an invalid click and ends the game.
+A minesweeper game written as a javascript module. The data structure is simple: a Game contains a Grid that contains a 2D array of Tiles. The Tiles contain all the state information for the game play. As clicks are made the "status" of the Tiles are changed from "UNKNOWN" to "CHECKED".  Unless of course the status is "BOMB", which then is an invalid click and ends the game.
 
-All the data is keep in the Grid/Tile objects so it can be easily export as JSON. This detaches this source from the display. The console log display is for debugging, however it can also be used to play the game. 
+All the data is keep in the Grid/Tile objects so it can be easily export as JSON or read as an object. This detaches this data from the display. The console log display is for debugging, however it can also be used to play the game. 
+
+Data Structure
+--------------
+```
+Game(x, y)
+  |
+  .grid ------------ Grid(x, y)
+  .moves               |
+  .numBombs            .tiles[][] ------- Tile(status, x, y)
+  |                    .x                   .x
+  |                    .y                   .y 
+  |                    |                    .touch  # bombs are adjacent
+  |                    |                    .status (UNKNOWN | CHECKED | BOMB)
+  |                    |                    |
+  .show()              .show()              .show()
+  .cheat()             .cheat()             .cheat()               
+  .click(x, y)         .setup()             .updateTouch(n)                              
+  .start(n)            .layBombs(n)
+                       .updateTiles()
+```
+
 
 Executing via CLI 
 -----------------
@@ -15,7 +36,7 @@ This code can be ran from the command line with node.js of V8. Or a browser's ja
  * g.show();
  * g.cheat(); 
 ```
-d8> g.show()
+d8> g.show() // console.log 
 ```
 show:
          0   1   2   3   4   5   6   7   8   9   10  11  
@@ -41,7 +62,7 @@ object returned from show()
 ```
 
 
-d8> g.cheat()
+d8> g.cheat() // console.log
 ```
 cheat view:
          0   1   2   3   4   5   6   7   8   9   10  11  
@@ -73,5 +94,6 @@ Notes
 Source
 ------
 Written by Kyle Dinh, 2013
+
 https://github.com/kyledinh/toolkit/tree/master/mindsweep
 
