@@ -16,6 +16,7 @@
 'use strict';
 
 // Tile
+// status: UNKNOWN | CHECKED | CLICKED | BOMB
 function Tile(status, x, y) {
    this.status = status || "UNKNOWN";
    this.touch = 0;
@@ -38,6 +39,7 @@ Tile.prototype.show = function () {
    var out = "=";
    if ((this.status === "CHECKED") && (this.touch > 0)) { out = this.touch; }
    if ((this.status === "CHECKED") && (this.touch === 0)) { out = " "; }
+   if ((this.status === "CLICKED")) { out = "."; }
    return out; 
 };
 
@@ -80,14 +82,14 @@ Grid.prototype.cheat = function () {
    }
    console.log(header);
    for (j=0; j < this.y; j++) {
-      var row = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
+      var log = (j < 10) ? "row  " + j + " :" : "row " + j + " :"; 
       for (i=0; i < this.x; i++) {
-         row = row + "[" + this.tiles[i][j].cheat() + "] "; 
+         log = log + "[" + this.tiles[i][j].cheat() + "] "; 
          if (this.tiles[i][j].status === "BOMB") {
             out.push({x: i, y: j, show: this.tiles[i][j].cheat()});
          }
       } 
-      console.log(row);
+      console.log(log);
    }
    return out;
 };
@@ -104,12 +106,14 @@ Grid.prototype.show = function () {
    }
    console.log(header);
    for (j=0; j < this.y; j++) {
-      var row = (j < 10) ? "row  " + j + "  " : "row " + j + "  "; 
+      var row = [];
+      var log = (j < 10) ? "row  " + j + "  " : "row " + j + "  "; 
       for (i=0; i < this.x; i++) {
-         row = row + "[" + this.tiles[i][j].show() + "] "; 
-         out.push({x: i, y: j, show: this.tiles[i][j].show()});
-      } 
-      console.log(row);
+         log = log + "[" + this.tiles[i][j].show() + "] "; 
+         row.push({x: i, y: j, show: this.tiles[i][j].show()});
+      }
+      out.push(row); 
+      console.log(log);
    }
    return out;
 };
@@ -169,12 +173,12 @@ function Game(x, y) {
 }
 
 function checkZeroAndPush(t, arr) {
-   if ((t.touch === 0) && (t.status !== "CHECKED") && (t.status !== "BOMB")) {
+   if ((t.touch === 0) && (t.status !== "CHECKED") && (t.status !== "CLICKED") && (t.status !== "BOMB")) {
       t.status = "CHECKED";
       arr.push(t);
       console.log("pushing to checkArr: " + t.x + ", " + t.y);
    }
-   if ((t.touch > 0) && (t.status !== "BOMB")) {
+   if ((t.touch > 0) && (t.status !== "BOMB") && (t.status !== "CLICKED")) {
       t.status = "CHECKED";
       console.log("marked adjacent : " + t.x + ", " + t.y);
    }
@@ -192,13 +196,15 @@ Game.prototype.click = function (x, y) {
    }
    
    //passed invalid or bomb; process click
-   this.grid.tiles[x][y].status = "CHECKED";
+   this.grid.tiles[x][y].status = "CLICKED";
 
    var tile, checkArr = [];
    if (this.grid.tiles[x][y].touch === 0) {
       checkArr.push(this.grid.tiles[x][y]);
    }
-   while ((tile = checkArr.pop()) != null) {
+   //while ((tile = checkArr.pop()) !== undefined) {
+   while (checkArr.length > 0) {
+      tile = checkArr.pop();
       var i = tile.x;
       var j = tile.y;
       tile.status = "CHECKED";
@@ -213,7 +219,6 @@ Game.prototype.click = function (x, y) {
       if (this.grid.isInBounds(i +1,j +1)) { checkZeroAndPush(this.grid.tiles[i +1][j +1], checkArr); }
    }
    return "OK"; 
-   
 };
 
 Game.prototype.start = function (numBombs) {

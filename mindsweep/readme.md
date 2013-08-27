@@ -15,16 +15,17 @@ Game(x, y)
   |                    .x                   .x
   |                    .y                   .y 
   |                    |                    .touch     # bombs are adjacent
-  |                    |                    .status    { UNKNOWN | CHECKED | BOMB }
+  |                    |                    .status    { UNKNOWN | CHECKED | CLICKED | BOMB }
   |                    |                    |
   .show()              .show()              .show()    { "=" | " " | 1-8 }
   .cheat()             .cheat()             .cheat()   { "*" }            
+  .over()              |                    |
   |                    |                    |
   .start(n)            .setup()             |                              
   |                    .layBombs(n)         |
   |                    .updateTiles()       .updateTouch(n)
   |
-  .click(x, y)
+  .click(x, y) { INVALID | BOMB | OK }
 
 ```
 
