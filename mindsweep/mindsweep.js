@@ -17,9 +17,9 @@
 
 // Tile
 // status: UNKNOWN | CHECKED | CLICKED | BOMB
-function Tile(status, x, y) {
+function Tile(status, touch, x, y) {
    this.status = status || "UNKNOWN";
-   this.touch = 0;
+   this.touch = touch || 0;
    this.x = x;
    this.y = y;
 }
@@ -65,7 +65,7 @@ Grid.prototype.setup = function () {
    this.tiles = arr;
    for (i=0; i < this.x; i++) {
       for (j=0; j < this.y; j++) {
-         this.tiles[i][j] = new Tile("UNKNOWN", i, j);
+         this.tiles[i][j] = new Tile("UNKNOWN", 0, i, j);
       }
    }
 };
@@ -162,6 +162,24 @@ Grid.prototype.updateTiles = function () {
    }
 };
 
+Grid.prototype.stringifyTiles = function () {
+   var i, j, arr = [];
+   for (j=0; j < this.y; j++) {    // row
+      for (i=0; i < this.x; i++) { // col
+         arr.push(this.tiles[i][j]);
+      }
+   }
+   return JSON.stringify(arr);
+}
+
+Grid.prototype.parseTiles = function (str) {
+   var arr = JSON.parse(str);
+   var i, n = arr.length;
+   for (i=0; i < n; i++) {
+      this.tiles[arr[i].x][arr[i].y] = new Tile(arr[i].status, arr[i].touch, arr[i].x, arr[i].y);
+   }
+}
+
 /*
  * Game object
  */
@@ -170,6 +188,9 @@ function Game(x, y) {
    this.grid = new Grid(x, y);
    this.moves = 0;
    this.numBombs;
+   this.state;
+   this.name;
+   this.id;
 }
 
 function checkZeroAndPush(t, arr) {
