@@ -259,6 +259,17 @@ Game.prototype.cheat = function () {
    return this.grid.cheat();
 };
 
+Game.prototype.stringify = function () {
+   var obj = new Game(this.grid.x, this.grid.y);
+   obj.grid = this.grid.stringifyTiles();
+   obj.moves = this.moves;
+   obj.numBombs = this.numBombs;
+   obj.name = this.name;
+   obj.state = this.state;
+   obj.id = this.id;
+   return JSON.stringify(obj);
+}
+
 // LIBRARY
 
 function shuffleArray(array) {
