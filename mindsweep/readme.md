@@ -4,6 +4,8 @@ A minesweeper game written as a javascript module. The data structure is simple:
 
 All the data is keep in the Grid/Tile objects so it can be easily export as JSON or read as an object. This detaches this data from the display. The console log display is for debugging, however it can also be used to play the game. 
 
+* [Online Implementation Demo](http://kyledinh.com:8000/view/#/delta)
+
 Data Structure
 --------------
 ```
@@ -16,6 +18,9 @@ Game(x, y)
   |                    .y                   .y 
   |                    |                    .touch     # bombs are adjacent
   |                    |                    .status    { UNKNOWN | CHECKED | CLICKED | BOMB }
+  |                    |                    |
+  .stringify()         .stringifyTiles()    |
+  |                    .parseTiles()        |
   |                    |                    |
   .show()              .show()              .show()    { "=" | " " | 1-8 }
   .cheat()             .cheat()             .cheat()   { "*" }            
