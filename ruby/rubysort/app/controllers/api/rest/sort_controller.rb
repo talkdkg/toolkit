@@ -6,23 +6,23 @@ module Api
 
          # GET method 
          def index
-
-
             @p = params.inspect 
             render :json => @p
          end
 
          # POST method 
          def create
+            _start_sw = Time.now
             @task = Task.new
 
-            info = request.raw_post
-            jnfo = JSON.parse(info)
+            _raw_post = request.raw_post
+            _info = JSON.parse(_raw_post)
 
-            @task.action = jnfo["action"]
-            @task.data = jnfo["data"]
+            @task.action = "NATIVE" #_info["action"]
+            @task.data = _info["data"]
             @task.result = @task.data.sort
-            @task.message = @task.result.length
+            @task.message = "#{@task.action} #{(Time.now - _start_sw).to_s} secs "
+            @task.message += ": #{@task.result.length.to_s} elements"   
 
             #@task.message = "This is a test."
             render :json => @task
