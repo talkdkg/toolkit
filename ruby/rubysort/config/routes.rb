@@ -1,5 +1,7 @@
 Rubysort::Application.routes.draw do
 
+   match 'api/rest/sort' => 'api/rest/sort#create',  via: :all # :constraints => {:method => "OPTIONS" }
+
    namespace :api do
       namespace :rest do
          resources :sort
@@ -16,8 +18,6 @@ Rubysort::Application.routes.draw do
   #      post 'kyle'
   #   end
   # end
-
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.
