@@ -2,6 +2,7 @@ module Api
    module Rest 
 
       class SortController < ApplicationController
+         include Algorithms
 
          skip_before_filter :verify_authenticity_token
 
@@ -34,7 +35,6 @@ module Api
                render :text => '', :content_type => 'text/plain'      
             end
          end
-
 
          # GET method 
          def index
@@ -69,10 +69,17 @@ module Api
 
                case @task.action
                when "NATIVE"
-                  @task.result = @task.data.sort
-                  @task.message = "#{@task.action} #{(Time.now - _start_sw).to_s} secs "
-                  @task.message += ": #{@task.result.length.to_s} elements"   
+                  @task.data = @task.data.sort
+                  @task.message = msgformatter(_start_sw, @task) 
                   @task.status = "success"
+                when "INSERTION"
+                  @task.data = Algorithms.insertion(@task.data)
+                  @task.message = msgformatter(_start_sw, @task)   
+                  @task.status = "success" 
+                when "SELECTION"
+                  @task.data = Algorithms.selection(@task.data)
+                  @task.message = msgformatter(_start_sw, @task)   
+                  @task.status = "success"                 
                else 
                   @task.message = "Unsupported action type, try NATIVE"
                   @task.status = "error"
@@ -81,6 +88,11 @@ module Api
             render :json => @task
 
          end #  create
+
+         def msgformatter(_start, _task)
+            _msg = "#{_task.action} #{(Time.now - _start).to_s} secs "
+            _msg += ": #{_task.data.length.to_s} elements" 
+         end
 
       end
    end
