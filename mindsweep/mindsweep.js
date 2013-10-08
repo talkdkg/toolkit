@@ -39,7 +39,7 @@ Tile.prototype.show = function () {
    var out = "=";
    if ((this.status === "CHECKED") && (this.touch > 0)) { out = this.touch; }
    if ((this.status === "CHECKED") && (this.touch === 0)) { out = " "; }
-   if ((this.status === "CLICKED")) { out = "."; }
+   if ((this.status === "CLICKED")) { out = this.touch; }
    return out; 
 };
 
@@ -142,7 +142,7 @@ Grid.prototype.isInBounds = function (x, y) {
    return true;
 };
 
-// Updates the tiles touh field with # of bombs that are adjacent
+// Updates the tile's touch field with # of bombs that are adjacent
 Grid.prototype.updateTiles = function () {
    var i, j;
    for (j=0; j < this.y; j++) {    // row
@@ -191,17 +191,19 @@ function Game(x, y) {
    this.state;
    this.name;
    this.id;
+   this.action;
 }
 
-function checkZeroAndPush(t, arr) {
-   if ((t.touch === 0) && (t.status !== "CHECKED") && (t.status !== "CLICKED") && (t.status !== "BOMB")) {
-      t.status = "CHECKED";
-      arr.push(t);
-      console.log("pushing to checkArr: " + t.x + ", " + t.y);
+// if this tile is newly discovered as a '0' adjencent tile; push it to the array of tiles to check
+function checkZeroAndPush(tile, arr) {
+   if ((tile.touch === 0) && (tile.status !== "CHECKED") && (tile.status !== "CLICKED") && (tile.status !== "BOMB")) {
+      tile.status = "CHECKED";
+      arr.push(tile);
+      console.log("pushing to checkArr: " + tile.x + ", " + tile.y);
    }
-   if ((t.touch > 0) && (t.status !== "BOMB") && (t.status !== "CLICKED")) {
-      t.status = "CHECKED";
-      console.log("marked adjacent : " + t.x + ", " + t.y);
+   if ((tile.touch > 0) && (tile.status !== "BOMB") && (tile.status !== "CLICKED")) {
+      tile.status = "CHECKED";
+      console.log("marked adjacent : " + tile.x + ", " + tile.y);
    }
 }
 
@@ -267,6 +269,7 @@ Game.prototype.stringify = function () {
    obj.name = this.name;
    obj.state = this.state;
    obj.id = this.id;
+   obj.action = this.action;
    return JSON.stringify(obj);
 }
 
