@@ -47,7 +47,7 @@ module Api
             logger.debug "sort#create with params == #{ request.params } "   
    
             @task = Task.new
-             _start_sw = Time.now
+            _start_sw = Time.now
          
             _payload = request.raw_post
             _param_sort = request.params[:sort]
@@ -72,11 +72,11 @@ module Api
                   @task.data = @task.data.sort
                   @task.message = msgformatter(_start_sw, @task) 
                   @task.status = "success"
-                when "INSERTION"
+               when "INSERTION"
                   @task.data = Algorithms.insertion(@task.data)
                   @task.message = msgformatter(_start_sw, @task)   
                   @task.status = "success" 
-                when "SELECTION"
+               when "SELECTION"
                   @task.data = Algorithms.selection(@task.data)
                   @task.message = msgformatter(_start_sw, @task)   
                   @task.status = "success"                 
