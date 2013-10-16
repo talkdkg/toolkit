@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+   <head>
+      <title>BS3</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="css/bootstrap.css" rel="stylesheet"/>
+      <link href="css/style.css" rel="stylesheet" />
+   </head>
+
+   <body>
+   <!-- NAVBAR -->   
+   <div class="navbar navbar-static-top navbar-inverse" role="navigation">   
+       <div class="container">
+      
+      <!-- For screen readers and mobiles -->
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+
+         <a class="navbar-brand">Slowblood</a>
+         <p class="navbar-text">Business Infrastructure Solutions</p>
+      </div>
+
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+         <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="article.html">Article</a></li>
+            <li class="dropdown">
+
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sub Menu<b class="caret"></b></a>
+               <ul class="dropdown-menu">
+                  <li><a href="#">Cars</a></li>
+                  <li><a href="#">Motos</a></li>
+                  <li><a href="#">Wings</a></li>
+               </ul>
+            </li>
+      
+            <li><a href="#">Client Area</a></li>
+            <li><a href="#contact" data-toggle="modal">Modal</a></li>
+         </ul>
+      </div>
+       
+      </div> <!-- End of container -->
+   </div><!-- End navbar -->
+
+   <!-- MAIN CONTAINER -->
+   <div class="container">
+
+ 
+      <div class="row">
+         <div class="col-lg-9">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <div class="page-header">
+
+                  <h3>Ducati Streetfighter <small>848 in Red, Model 2013</small></h3>
+                  </div>
+                  <img class="featuredImg thumbnail" src="img/ducati-SF848.jpg" width="100%"/>
+                  <p>
+                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+                  </p>
+               </div>
+            </div>
+         </div> <!-- col-lg-9 -->
+
+         <div class="col-lg-3">
+
+            <div class="list-group">
+               <a href="#" class="list-group-item" id="LG0001">
+                  <h4 class="list-group-item-heading">Lorem Ispsum</h4>
+                  <p class="list-group-item-text">
+                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.
+                  </p>   
+               </a>   
+               <a href="#" class="list-group-item" id="LG0002">
+                  <h4 class="list-group-item-heading">Loresum 2</h4>
+                  <p class="list-group-item-text">
+                     Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+                  </p>   
+               </a>   
+            </div><!-- .list-group -->
+
+         </div><!-- col-lg-3 -->
+
+
+
+      </div><!-- row -->
+
+      <div class="row" id="spinner">
+         <div class="col-lg-9">
+            <div class="spinner">
+            </div>
+         </div>
+      </div><!-- .row #spinner -->
+
+
+   </div><!-- main container -->
+
+   <br clear="all"/>
+
+
+
+
+   <!-- MODAL -->
+   <div class="modal fade" id="contact" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">  
+            <div class="modal-header">
+               <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+               <h4>Modal</h4>
+            </div>
+            <div class="modal-body">
+               <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+            </div>
+            <div class="modal-footer">
+               <a class="btn btn-default" data-dismiss="modal">Close</a>
+            </div>
+         </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+   </div><!-- modal contact -->
+
+
+
+
+   <!-- FOOTER -->
+   <footer class="footer" id="footer">
+      <div class="container">
+         <p class="navbar-text pull-left">This is the footer.</p>
+         <a href="#" class="navbar-btn btn-danger btn btn-sm pull-right">Subscribe</a>
+      </div>
+   </footer>
+
+   <!-- SCRIPTS -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="js/bootstrap.js"></script>
+   </body>
+</html>
