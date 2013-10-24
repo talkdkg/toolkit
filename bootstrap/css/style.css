@@ -26,3 +26,10 @@ footer {
 	background: #222222;
 	color: #999999;
 }
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 12px;
+   line-height: 1.428571429;
+   color: #333333;
+}
