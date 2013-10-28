@@ -1,13 +1,13 @@
 (function () {
-    "use strict";
-    if (typeof this.console === 'undefined') {
-        this.console = {};
-        this.console.log = function () {
-            if (typeof print === 'function') {
-                print.apply(this, arguments);
-            }
-        };
-    }
+   "use strict";
+   if (typeof this.console === 'undefined') {
+      this.console = {};
+      this.console.log = function () {
+         if (typeof print === 'function') {
+            print.apply(this, arguments);
+         }
+      };
+   }
 }).call(this);
 
 
@@ -22,25 +22,23 @@ function Node(key, value) {
    this.right = null;
 }
 
-BST.prototype.append = function (_node, _current) {
-   var _key = _node.key;
-   var _value = _node.value;
-   console.log(" appending " + _node.key +  " : " + _current.key)
-   if (_node.key < _current.key) {
+BST.prototype.append = function (_key, _value, _current) {
+   console.log(" appending " + _key +  " : " + _current.key)
+   if (_key < _current.key) {
       if (_current.left === null) {
-         _current.left = _node;
+         _current.left = new Node(_key, _value);
       } else {
-         this.append(new Node(_key, _value), _current.left);
+         this.append(_key, _value, _current.left);
       }
-   } else if (_node.key > _current.key) {
+   } else if (_key > _current.key) {
       if (_current.right === null) {
-         _current.right = _node;
+         _current.right = new Node(_key, _value);
       } else {
-         this.append(new Node(_key, _value), _current.right);
+         this.append(_key, _value, _current.right);
       }
    } else {
-      _current.value = _node.value;
-      return _node;
+      _current.value = _value;
+      return true;
    }
 };
 
@@ -72,7 +70,7 @@ BST.prototype.put = function (key, value) {
    if (this.root === null) {
       this.root = node;
    } else {
-      this.append(node, this.root);
+      this.append(key, value, this.root);
    }
 };
 
@@ -95,6 +93,7 @@ b.put(1, "Uno");
 b.put(10, "Diaz");
 b.put(12, "Doce");
 
-//console.log(b.get(7));
-//console.log(b.get(1));
-//console.log(b.get(10));
+console.log(b.get(7));
+console.log(b.get(1));
+console.log(b.get(10));
+console.log(b.get(12));
