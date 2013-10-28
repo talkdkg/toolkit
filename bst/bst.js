@@ -10,7 +10,6 @@
    }
 }).call(this);
 
-
 function BST() {
    this.root = null;
 }
@@ -43,19 +42,20 @@ BST.prototype.append = function (_key, _value, _current) {
 };
 
 BST.prototype.find = function (_key, _current) {
-   console.log(" finding " + _key +  " : " + _current.key)
-   console.log(_current.value);
+   var result;
+   //console.log(" finding " + _key +  " : " + _current.key)
+   //console.log(_current.value);
    if (_key < _current.key) {
       if (_current.left === null) {
          return "no match";
       } else {
-         this.find(_key, _current.left);
+         return this.find(_key, _current.left);
       }
    } else if (_key > _current.key) {
       if (_current.right === null) {
          return "no match";
       } else {
-         this.find(_key, _current.right);
+         return this.find(_key, _current.right);
       }
    } else if (_key === _current.key) {
       return _current.value;
@@ -64,6 +64,33 @@ BST.prototype.find = function (_key, _current) {
    }
 };
 
+BST.prototype.remove = function (_key, _current) {
+   console.log(" removing " + _key +  " : " + _current.key)
+   console.log(_current.value);
+
+/// REMOVING 
+   if ((_current.left === null) && (_current.right === null)) {
+      return false;
+   }
+
+   if ((_current.left !== null) && (_key === _current.left.key)) {
+      _current.left = null;
+      return true;
+   }
+
+   if ((_current.right !== null) && (_key === _current.right.key)) {
+      _current.right = null;
+      return true;
+   }
+
+   if ((_key < _current.key) && (_current.left !== null)) {
+      return this.remove(_key, _current.left);
+   } else if ((_key > _current.key) && (_current.right !== null)) {
+      return this.remove(_key, _current.right);
+   } else {
+      return "no match";
+   }
+};
 
 BST.prototype.put = function (key, value) {
    var node = new Node(key, value);
@@ -74,6 +101,13 @@ BST.prototype.put = function (key, value) {
    }
 };
 
+BST.prototype.delete = function (key) {
+   if (this.root === null) {
+      return "empty tree";
+   } else {
+      return this.remove(key, this.root);
+   }
+}
 
 BST.prototype.get = function (key) {
    if (this.root === null) {
@@ -97,3 +131,7 @@ console.log(b.get(7));
 console.log(b.get(1));
 console.log(b.get(10));
 console.log(b.get(12));
+
+console.log(b.delete(12));
+
+
