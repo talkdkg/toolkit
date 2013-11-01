@@ -6,3 +6,5 @@
 *.iml
 *.DS_store
 .idea
+
+__pycache__
