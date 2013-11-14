@@ -117,21 +117,35 @@ BST.prototype.get = function (key) {
    }
 };
 
+BST.prototype.toArray = function () {
+   var result = [];
+   this.traverse(function(node) {
+      result.push(node.value);
+   });
+   return result;
+};
+
 
 //Test
 
-var b = new BST();
-b.put(7, "Seven");
-b.put(3, "Tres");
-b.put(1, "Uno");
-b.put(10, "Diaz");
-b.put(12, "Doce");
+function Test() {
 
-console.log(b.get(7));
-console.log(b.get(1));
-console.log(b.get(10));
-console.log(b.get(12));
+   var b = new BST();
+   b.put(7, "Seven");
+   b.put(3, "Tres");
+   b.put(1, "Uno");
+   b.put(10, "Diaz");
+   b.put(12, "Doce");
 
-console.log(b.delete(12));
+   console.log(b.get(7));
+   console.log(b.get(1));
+   console.log(b.get(10));
+   console.log(b.get(12));
+
+   console.log(b.delete(12));
+
+}
+
+Test();
 
 
