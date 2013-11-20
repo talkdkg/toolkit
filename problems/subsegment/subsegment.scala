@@ -1,3 +1,7 @@
+def trimWords(lines: List[String]) = lines flatMap { line =>
+   "[a-zA-Z]+".r findAllIn line map (_.toLowerCase)
+}
+
 val file = io.Source.fromFile("input.txt","utf-8")
 val lines = file.getLines.toList
 val num = lines(0).toInt
@@ -22,9 +26,7 @@ for { j <- 0 to num-1 } yield {
    }
 }
 
-def trimWords(lines: List[String]) = lines flatMap { line =>
-   "[a-zA-Z]+".r findAllIn line map (_.toLowerCase)
-}
+
 
 /*
 matrix(0) 0, 4, 9

@@ -6,13 +6,13 @@ import (
 )
 
 func transFizzBuzz(i int) (string) {
-   if (((i % 3) == 0) && ((i % 5)) == 0) {
+   if (i % 3) == 0 && (i % 5) == 0 {
       return "FizzBuzz"
    }
-   if ((i % 3) == 0) {
+   if (i % 3) == 0 {
       return "Fizz"
    }
-   if ((i % 5) == 0) {
+   if (i % 5) == 0 {
       return "Buzz"
    }
    return strconv.Itoa(i)
