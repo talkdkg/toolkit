@@ -15,17 +15,24 @@ println("Target " + target.mkString(" "))
 println("Num " + num)
 println("Src " + src.length)
 
-for { j <- 0 to num-1 } yield {
-   var cnt = 0;
+
+for { x <- 0 to num-1 } yield {
+   var y = 0;
+   // fill the array with -1 as initial value
+   for { k <- 0 to max-1 } yield { matrix(x)(k) = -1 }
+
    for { i <- 0 to src.length-1 } yield {
-      if (src(i) == target(j)) {
-         println("Found @ " + i + " " + src(i) + " for " + target(j))
-         matrix(j)(cnt) = i
-         cnt = cnt +1
+      if (src(i) == target(x)) {
+         println("Found @ " + i + " " + src(i) + " for " + target(x))
+         matrix(x)(y) = i
+         y = y+1
       }
    }
 }
 
+for { x <- 0 to num-1 } yield {
+   println(x + " row of matrix " + matrix(x).deep.mkString(" "))
+}
 
 
 /*
