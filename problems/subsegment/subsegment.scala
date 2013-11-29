@@ -13,7 +13,7 @@ def treeify(arr: Array[Int], num: Int, max: Int, pos: Int) : Array[Int] = {
 }
 
 //-------------------------------
-// subsegment will take an input.txt -> matrix of indexs of occurances
+// subsegment will take an input.txt -> matrix of indexes of occurances
 // matrix -> permutate all combos to -> results -> filter to -> answers
 // Written by: Kyle Dinh @ https://github.com/kyledinh/toolkit/tree/master/problems/subsegment
 // scala 2.10.1
@@ -29,9 +29,9 @@ val breath = target.map(t => src.count(_ == t)).max
 //val matrix = Array.ofDim[Int](depth, breath) 
 val matrix = Array.fill(depth, breath)(-1)
 
-println("Target " + target.mkString(" "))
+println("Target: " + target.mkString(" "))
 println("depth " + depth + ", breath " + breath)
-println("Src " + src.length)
+println("Src length: " + src.length)
 
 for { x <- 0 to depth-1 } yield {
    var y = 0;
@@ -65,29 +65,34 @@ combos:
 */
 
 // Now, permutate through the matrix for each combonation; a num from each row(depth)
-
-val comboArray = Array.fill(depth)(0)
+val permutation = Array.fill(depth)(0)
 var results = List[Array[Int]]()
 
 for { x <- 0 to math.pow(breath, depth).toInt -1 } yield {
-   var b = Array.fill(depth)(-1)
-   var combo = treeify(comboArray, x, breath, 0)
+   var arr = Array.fill(depth)(-1)
+   var combo = treeify(permutation, x, breath, 0)
 
-   for { i <- 0 to b.length-1 } yield {
-      b(i) = matrix(i)(combo(i))
+   for { i <- 0 to arr.length-1 } yield {
+      arr(i) = matrix(i)(combo(i))
    }
-   val distance = b.max - b.min
-   b = b :+ distance
-   println(b.mkString(" "))
+   val distance = arr.max - arr.min
+   arr = arr :+ distance
+   println(arr.mkString(" "))
 
    // reject combos with a -1 from results; incomplete combos
-   if (!b.contains(-1)) { results = results :+ b }  
-   //println("For  " + x +" : " + combo.mkString(" ")  + "   " + b.mkString(" ")  + "  : " + distance ) 
+   if (!arr.contains(-1)) { results = results :+ arr } 
+
+   //println("For  " + x +" : " + combo.mkString(" ")  + "   " + arr.mkString(" ")  + "  : " + distance ) 
 }
 
-println("Number of possible combos:  " + results.length) 
-val answers = results.sortWith(_(depth) < _(depth))
-val m = answers.head(depth) 
-println("Your answer(s) for shortest substring with the length of : " + m)
-def printList(l: Array[Int]): Unit = { println(l.mkString(" "))}
-answers.filter(_(depth) == m).foreach(printList)
+println("Number of possible combos: " + results.length) 
+
+if (results.length == 0) {
+   println("NO SUBSEGMENT FOUND")
+} else {
+   val answers = results.sortWith(_(depth) < _(depth))
+   val min_num = answers.head(depth) 
+   def printList(arr: Array[Int]): Unit = { println(arr.mkString(" "))}
+   println("Your answer(s) for shortest substring with the length of : " + min_num)
+   answers.filter(_(depth) == min_num).foreach(printList)
+}
