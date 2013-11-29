@@ -12,6 +12,13 @@ def treeify(arr: Array[Int], num: Int, max: Int, pos: Int) : Array[Int] = {
    return arr
 }
 
+//-------------------------------
+// subsegment will take an input.txt -> matrix of indexs of occurances
+// matrix -> permutate all combos to -> results -> filter to -> answers
+// Written by: Kyle Dinh @ https://github.com/kyledinh/toolkit/tree/master/problems/subsegment
+// scala 2.10.1
+//-------------------------------
+
 val file = io.Source.fromFile("input.txt","utf-8")
 val lines = file.getLines.toList
 val depth = lines(0).toInt
@@ -44,6 +51,21 @@ for { x <- 0 to depth-1 } yield {
    println(x + " row of matrix " + matrix(x).deep.mkString(" "))
 }
 
+/*
+matrix(0) 0, 4, 9
+      (1) 2, 6, 11
+      (2) 3, 8, 13
+      (3) 7, 12
+
+combos:
+0,2,3,7
+4,2,3,7
+9,2,3,7
+...
+*/
+
+// Now, permutate through the matrix for each combonation; a num from each row(depth)
+
 val comboArray = Array.fill(depth)(0)
 var results = List[Array[Int]]()
 
@@ -58,26 +80,14 @@ for { x <- 0 to math.pow(breath, depth).toInt -1 } yield {
    b = b :+ distance
    println(b.mkString(" "))
 
-   // combos with a -1 is dropped from results
-   if (!b.contains(-1)) { results = results :+ b }
-   
+   // reject combos with a -1 from results; incomplete combos
+   if (!b.contains(-1)) { results = results :+ b }  
    //println("For  " + x +" : " + combo.mkString(" ")  + "   " + b.mkString(" ")  + "  : " + distance ) 
 }
 
-println("For  " + results.length) 
-
-val answer = results.sortWith(_(depth) < _(depth))
-
-println(answer.head.mkString(","))
-
-/*
-matrix(0) 0, 4, 9
-      (1) 2, 6, 11
-      (2) 3, 8, 13
-      (3) 7, 12
-
-0,2,3,7
-4,2,3,7
-9,2,3,7
-*/
-
+println("Number of possible combos:  " + results.length) 
+val answers = results.sortWith(_(depth) < _(depth))
+val m = answers.head(depth) 
+println("Your answer(s) for shortest substring with the length of : " + m)
+def printList(l: Array[Int]): Unit = { println(l.mkString(" "))}
+answers.filter(_(depth) == m).foreach(printList)
