@@ -1,3 +1,13 @@
+CV Highlites 
+============
+
+1. Website: http://kyledinh.com
+2. GitHub account: https://github.com/kyledinh
+3. Tekst Project illustrates use of Twitter Bootstrap (Responsive CSS), Go Lang, Javascript, Ruby On Rail, RESTful API, d3JS: https://github.com/kyledinh/tekst and to the demo: http://kyledinh.com:8000
+4. TaakApp is written for Scala and uses Postgres: https://github.com/kyledinh/taakapp
+5. Toolkit has a wiki for all my notes: https://github.com/kyledinh/toolkit/wiki/_pages
+6. CV Online: https://gist.github.com/kyledinh/97f6aeabb5dbe7b34df3
+
 Quick Index to Code Sample
 ==========================
 * scala            -- https://github.com/kyledinh/taakapp

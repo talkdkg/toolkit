@@ -90,9 +90,10 @@ println("Number of possible combos: " + results.length)
 if (results.length == 0) {
    println("NO SUBSEGMENT FOUND")
 } else {
-   val answers = results.sortWith(_(depth) < _(depth))
-   val min_num = answers.head(depth) 
+   val answers = results.sortWith(_.last < _.last)
+   val min_num = answers.head.last 
+   //val min_num = results.reduceLeft(_.last min _.last)
    def printList(arr: Array[Int]): Unit = { println(arr.mkString(" "))}
    println("Your answer(s) for shortest substring with the length of : " + min_num)
-   answers.filter(_(depth) == min_num).foreach(printList)
+   answers.filter(_.last == min_num).foreach(printList)
 }
