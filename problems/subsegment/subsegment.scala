@@ -22,25 +22,25 @@ def treeify(arr: Array[Int], num: Int, max: Int, pos: Int) : Array[Int] = {
 val file = io.Source.fromFile("input.txt","utf-8")
 val lines = file.getLines.toList
 val depth = lines(0).toInt
-val target = lines.slice(1, depth+1)
-val src = trimWords(lines(depth +1).split(" ").toList)
-val breath = target.map(t => src.count(_ == t)).max     
+val keywordArr = lines.slice(1, depth+1)
+val segmentArr = trimWords(lines(depth +1).split(" ").toList)
+val breath = keywordArr.map(t => segmentArr.count(_ == t)).max     
 
 //val matrix = Array.ofDim[Int](depth, breath) 
 val matrix = Array.fill(depth, breath)(-1)
 
-println("Target: " + target.mkString(" "))
+println("Keywords: " + keywordArr.mkString(" "))
 println("depth " + depth + ", breath " + breath)
-println("Src length: " + src.length)
+println("segmentArr length: " + segmentArr.length)
 
 for { x <- 0 to depth-1 } yield {
    var y = 0;
    // fill the array with -1 as initial value
    //for { k <- 0 to breath-1 } yield { matrix(x)(k) = -1 }
 
-   for { i <- 0 to src.length-1 } yield {
-      if (src(i) == target(x)) {
-         println("Found @ " + i + " " + src(i) + " for " + target(x))
+   for { i <- 0 to segmentArr.length-1 } yield {
+      if (segmentArr(i) == keywordArr(x)) {
+         println("Found @ " + i + " " + segmentArr(i) + " for " + keywordArr(x))
          matrix(x)(y) = i
          y = y+1
       }
@@ -65,12 +65,12 @@ combos:
 */
 
 // Now, permutate through the matrix for each combonation; a num from each row(depth)
-val permutation = Array.fill(depth)(0)
+val permutationArr = Array.fill(depth)(0)
 var results = List[Array[Int]]()
 
 for { x <- 0 to math.pow(breath, depth).toInt -1 } yield {
    var arr = Array.fill(depth)(-1)
-   var combo = treeify(permutation, x, breath, 0)
+   var combo = treeify(permutationArr, x, breath, 0)
 
    for { i <- 0 to arr.length-1 } yield {
       arr(i) = matrix(i)(combo(i))
