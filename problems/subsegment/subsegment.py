@@ -89,15 +89,30 @@ for x in range(0, num_possible):
 
    for i in range(0, depth):
       c = int(combo[i])
-      #print(matrix[i][c])
       arr[i] = matrix[i][c]
 
-   distance = max(arr) - min(arr)
+   distance = max(arr[0:depth]) - min(arr[0:depth])
    arr[depth] = distance
 
    if (-1 not in arr):
       results.append(arr)
 
 
+## Outputing the results
+
 pprint.pprint(results)
+
+def shortestSubsegment(arr, pos):
+   shortest = []
+   num = 99 
+   for i in range(0, len(arr)):
+      _combo = arr[i]
+      if num > _combo[pos]:
+         num = _combo[pos]
+         shortest = _combo
+
+   return shortest
+
+print("shortest sub-segment")
+print(shortestSubsegment(results, depth))
 
