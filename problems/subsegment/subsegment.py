@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import pprint
 import math
+import pprint
+import sys
 
 def trimWords(words):
    return words.replace(',', '').replace('.','').lower()
@@ -22,16 +23,32 @@ def readFileToArray(path):
    f.close()
    return arr
 
-def treeify(arr, num, top, pos):
+def permute(arr, num, top, pos):
    quotient = num / top
    remainder = num % top
    arr[pos] = remainder
    if (quotient < top):
       arr[pos+1] = quotient
    if (quotient >= top):
-      treeify(arr, quotient, top, pos+1)
+      permute(arr, quotient, top, pos+1)
    return arr
 
+
+## return row with the lowest value of the last column  
+## [7,8,3,5,7]
+## [7,8,3,5,2] <--------
+## [7,8,3,5,4]
+
+def shortestSubsegment(arr):
+   shortest = []
+   pos = len(arr[0])-1
+   num = sys.maxsize 
+   for i in range(0, len(arr)):
+      combo = arr[i]
+      if num > combo[pos]:
+         num = combo[pos]
+         shortest = combo
+   return shortest
 
 ## Written by: Kyle Dinh @ https://github.com/kyledinh/toolkit/tree/master/problems/subsegment 
 ## keywordArr holds the wanted elements for the sub-segment
@@ -45,9 +62,6 @@ breath = maxCountInArrays(keywordArr, segmentArr)
 
 # Build matrix with the default -1 value
 matrix = [[-1 for i in range(breath)] for i in range(depth)]
-
-print("matrix 0,0", matrix[0][0])
-print("matrix 3,2", matrix[3][2])
 
 print("depth: ", depth)
 print("breath: ", breath)
@@ -72,7 +86,6 @@ for x in range(0, depth):
    print(" row of matrix for  " + " ".join(str(i) for i in matrix[x]))
 
 pprint.pprint(matrix)
-
 permutation = [0]*depth
 pprint.pprint(permutation)
 
@@ -85,7 +98,7 @@ for x in range(0, num_possible):
    #arr = [-1 for x in range(depth)]
    n = depth+1
    arr = [-1]*n
-   combo = treeify(permutation, x, breath, 0)
+   combo = permute(permutation, x, breath, 0)
 
    for i in range(0, depth):
       c = int(combo[i])
@@ -97,22 +110,13 @@ for x in range(0, num_possible):
    if (-1 not in arr):
       results.append(arr)
 
-
 ## Outputing the results
 
 pprint.pprint(results)
+print("Number of possible combos: " + str(len(results)))
 
-def shortestSubsegment(arr, pos):
-   shortest = []
-   num = 99 
-   for i in range(0, len(arr)):
-      _combo = arr[i]
-      if num > _combo[pos]:
-         num = _combo[pos]
-         shortest = _combo
-
-   return shortest
-
-print("shortest sub-segment")
-print(shortestSubsegment(results, depth))
+if len(results) == 0:
+   print("NO SUBSEGMENT FOUND")
+else:
+   print(shortestSubsegment(results))
 

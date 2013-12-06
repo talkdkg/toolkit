@@ -1,14 +1,14 @@
-def trimWords(lines: List[String]) = lines flatMap { line =>
-   "[a-zA-Z]+".r findAllIn line map (_.toLowerCase)
+def trimWords(lines: List[String]) = lines.flatMap { line =>
+   "[a-zA-Z]+".r.findAllIn(line).map(_.toLowerCase)
 }
 
-def treeify(arr: Array[Int], num: Int, max: Int, pos: Int) : Array[Int] = {
+def permute(arr: Array[Int], num: Int, max: Int, pos: Int) : Array[Int] = {
    val quotient = num / max
    val remainder = num % max
 
    arr(pos) = remainder
    if (quotient < max) { arr(pos+1) = quotient }
-   if (quotient >= max) { treeify(arr, quotient, max, pos+1) }
+   if (quotient >= max) { permute(arr, quotient, max, pos+1) }
    return arr
 }
 
@@ -25,20 +25,19 @@ val depth = lines(0).toInt
 val keywordArr = lines.slice(1, depth+1)
 val segmentArr = trimWords(lines(depth +1).split(" ").toList)
 val breath = keywordArr.map(t => segmentArr.count(_ == t)).max     
-
-//val matrix = Array.ofDim[Int](depth, breath) 
 val matrix = Array.fill(depth, breath)(-1)
 
 println("Keywords: " + keywordArr.mkString(" "))
 println("depth " + depth + ", breath " + breath)
 println("segmentArr length: " + segmentArr.length)
 
-for { x <- 0 to depth-1 } yield {
+for { x <- 0 to depth-1 } {
    var y = 0;
-   // fill the array with -1 as initial value
-   //for { k <- 0 to breath-1 } yield { matrix(x)(k) = -1 }
 
-   for { i <- 0 to segmentArr.length-1 } yield {
+   // fill the array with -1 as initial value
+   // for { k <- 0 to breath-1 } { matrix(x)(k) = -1 }
+
+   for { i <- 0 to segmentArr.length-1 } {
       if (segmentArr(i) == keywordArr(x)) {
          println("Found @ " + i + " " + segmentArr(i) + " for " + keywordArr(x))
          matrix(x)(y) = i
@@ -47,7 +46,7 @@ for { x <- 0 to depth-1 } yield {
    }
 }
 
-for { x <- 0 to depth-1 } yield {
+for { x <- 0 to depth-1 } {
    println(x + " row of matrix " + matrix(x).deep.mkString(" "))
 }
 
@@ -64,15 +63,15 @@ combos:
 ...
 */
 
-// Now, permutate through the matrix for each combonation; a num from each row(depth)
+// Now, permute through the matrix for each combonation; a num from each row(depth)
 val permutationArr = Array.fill(depth)(0)
 var results = List[Array[Int]]()
 
-for { x <- 0 to math.pow(breath, depth).toInt -1 } yield {
+for { x <- 0 to math.pow(breath, depth).toInt -1 } {
    var arr = Array.fill(depth)(-1)
-   var combo = treeify(permutationArr, x, breath, 0)
+   val combo = permute(permutationArr, x, breath, 0)
 
-   for { i <- 0 to arr.length-1 } yield {
+   for { i <- 0 to arr.length-1 } {
       arr(i) = matrix(i)(combo(i))
    }
    val distance = arr.max - arr.min
@@ -81,8 +80,6 @@ for { x <- 0 to math.pow(breath, depth).toInt -1 } yield {
 
    // reject combos with a -1 from results; incomplete combos
    if (!arr.contains(-1)) { results = results :+ arr } 
-
-   //println("For  " + x +" : " + combo.mkString(" ")  + "   " + arr.mkString(" ")  + "  : " + distance ) 
 }
 
 println("Number of possible combos: " + results.length) 
@@ -92,7 +89,6 @@ if (results.length == 0) {
 } else {
    val answers = results.sortWith(_.last < _.last)
    val min_num = answers.head.last 
-   //val min_num = results.reduceLeft(_.last min _.last)
    def printList(arr: Array[Int]): Unit = { println(arr.mkString(" "))}
    println("Your answer(s) for shortest substring with the length of : " + min_num)
    answers.filter(_.last == min_num).foreach(printList)
