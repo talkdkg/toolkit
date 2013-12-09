@@ -28,8 +28,8 @@ func ReadLines(path string) ([]string, error) {
 }
 
 func trimWords(word string) (string) {
-   wordRx := regexp.MustCompile("[^A-Za-z0-9 ]+")
-   word = wordRx.ReplaceAllString(word, "")
+   rx := regexp.MustCompile("[^A-Za-z0-9 ]+")
+   word = rx.ReplaceAllString(word, "")
    return strings.ToLower(word)
 }
 
@@ -49,16 +49,23 @@ func handleErr(err error) {
    if err != nil { log.Fatalf("Error with : %s", err) }
 }
 
-func maxCountInArrays(arr []string, src []string) (int) {
+func maxCountInArrays(arr []string, segments []string) (int) {
    max := 0
-   for i := 0; i < len(arr); i++ {
+   for i := range arr {
       cnt := 0
-      for j := 0; j < len(src); j++ {
-         if arr[i] == src[j] { cnt++ }
+      for j := range segments {
+         if arr[i] == segments[j] { cnt++ }
       }
       if cnt > max { max = cnt }
    }
    return max
+}
+
+func containsIntInArray(arr []int, value int) (bool) {
+   for i := 0; i < len(arr); i++ {
+      if arr[i] == value { return true }
+   }
+   return false
 }
 
 func permute(arr []int, num, max, pos int) ([]int) {
@@ -77,6 +84,44 @@ func calcIntPow(x, y int) (int) {
       //fmt.Println("x : %d ", result)
    }
    return result
+}
+
+func fillArray(length, value int) ([]int) {
+   arr := make([]int, length)
+   for i := 0; i < length; i++ {
+      arr[i] = value
+   }
+   return arr
+}
+
+func maxInArray(arr []int) (int) {
+   num := arr[0]
+   for i := 0; i < len(arr); i++ {
+      if arr[i] > num { num = arr[i] }
+   }
+   return num
+}
+
+func minInArray(arr []int) (int) {
+   num := arr[0]
+   for i := 0; i < len(arr); i++ {
+      if arr[i] < num { num = arr[i] }
+   }
+   return num
+}
+
+func shortestSubsegment(arr [][]int) ([]int) {
+   shortest := make([]int, 0)
+   pos := len(arr[0]) -1
+   num := 1000000  // find the system max int
+   for i := 0; i < len(arr); i++ {
+      combo := arr[i]
+      if num > combo[pos] {
+         num = combo[pos]
+         shortest = combo
+      }
+   }
+   return shortest
 }
 
 
@@ -103,12 +148,45 @@ func main() {
    fmt.Println("breath : ", breath)
    fmt.Println("depth : ", depth)
 
+   for x := 0; x < depth; x++ {
+      y := 0
+      for i := 0; i < len(segmentArr); i++ {
+         if segmentArr[i] == keywordArr[x] {
+            println("Found @ ", i, " ", segmentArr[i], " for ", keywordArr[x])
+            matrix[x][y] = i
+            y = y+1
+         }
+      }
+   }
+
    fmt.Printf("matrix : %-8T %2d %v\n", matrix, len(matrix), matrix)
 
-   //permutation := []
-//   var results [][]int
+   permutationArr := fillArray(depth, 0)
+   results := make([][]int, 0)
    num_possible := calcIntPow(breath, depth)
    fmt.Println("# of purmutations : ", num_possible)
 
+   for x := 0; x < num_possible; x++ {
+      combo := permute(permutationArr, x, breath, 0)
+      //fmt.Println("combo       : ", combo)
+      arr := fillArray(depth, -1)
+      for i := 0; i < len(arr); i++ {
+         arr[i] = matrix[i][combo[i]]
+      }
+      //fmt.Println("permutation : ", arr)
+      distance := maxInArray(arr) - minInArray(arr)
+      arr = append(arr, distance)
+      if !containsIntInArray(arr, -1) {
+         results = append(results, arr)
+      }
+   }
+
+   // Final output, shortest of all the possible combos
+   if len(results) == 0 {
+      fmt.Println("NO SUBSEGMENTS FOUND")
+   } else {
+      fmt.Println("# of results", len(results))
+      fmt.Println("Shortest subsegment: ", shortestSubsegment(results))
+   }
 }
 
