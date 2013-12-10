@@ -96,7 +96,7 @@ for x in 0..num_possible -1
 
    distance =  arr.max - arr.min
    arr[depth] = distance
-   puts i.to_s + "  " + arr*" "
+   puts arr*" "
 
    if !arr.include? -1
       results.push(arr)
