@@ -21,6 +21,8 @@ ruby subsegment.rb
 another Class version in ruby/ you can specify an input file
 ```
 ruby Subsegment.rb alt.txt
+rspec subsegment_spec.rb
+
 ```
 
 Scala
