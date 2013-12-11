@@ -44,13 +44,13 @@ class Subsegment
       return shortest
    end
 
-   def getResults(input)
-      if !File.file?(input)  
+   def getResults(filename)
+      if !File.file?(filename)  
          return []
       end
-      lines = IO.readlines(input) 
+      lines = IO.readlines(filename) 
       if lines.empty?
-         puts "ERROR reading " + input
+         puts "ERROR reading " + filename
          return []
       end
       depth = lines[0].to_i
@@ -120,17 +120,17 @@ end
 
 ss = Subsegment.new
 
-file = "input.txt"
+filename = "input.txt"
 results = []
 
 if !ARGV.empty? 
    file = ARGV[0]
 end
 
-if !File.file?(file)  
-   puts "Program can not find your inputfile: " + file + "."
+if !File.file?(filename)  
+   puts "Program can not find your inputfile: " + filename + "."
 else  
-   results = ss.getResults(file)
+   results = ss.getResults(filename)
 end 
 
 # Final selection for results and display
