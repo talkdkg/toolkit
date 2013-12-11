@@ -124,7 +124,7 @@ file = "input.txt"
 results = []
 
 if !ARGV.empty? 
-   inputfile = ARGV[0]
+   file = ARGV[0]
 end
 
 if !File.file?(file)  
