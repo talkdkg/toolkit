@@ -124,13 +124,15 @@ func shortestSubsegment(arr [][]int) ([]int) {
    return shortest
 }
 
-
 func main() {
    var depth, breath int
    var keywordArr, segmentArr, lines []string
    var err error
+   var filename = "input.txt" // default
 
-   lines, err = ReadLines("input.txt")
+   if len(os.Args) > 1 { filename = os.Args[1] }
+
+   lines, err = ReadLines(filename)
    handleErr(err)
 
    depth, err = strconv.Atoi(lines[0])
