@@ -44,7 +44,7 @@ class Subsegment
       return shortest
    end
 
-   def getResults(filename)
+   def fileLines(filename) 
       if !File.file?(filename)  
          return []
       end
@@ -53,6 +53,10 @@ class Subsegment
          puts "ERROR reading " + filename
          return []
       end
+      return lines
+   end 
+
+   def getResults(lines)
       depth = lines[0].to_i
       keywordArr = lines.slice(1, depth).map {|x| x.chomp }
       segmentArr = lines[depth+1].gsub(/[^0-9a-zA-Z ]/, '').downcase.split(' ')
@@ -119,19 +123,18 @@ end
 ############################################## 
 
 ss = Subsegment.new
-
-filename = "input.txt"
 results = []
+srcfile = "input.txt"
 
-if !ARGV.empty? 
-   filename = ARGV[0]
+# use argv[0] if it's not ran by rspec
+if ARGV.length > 0
+   if !ARGV[0].end_with? "_spec.rb"
+      srcfile = ARGV[0] 
+   end 
 end
 
-if !File.file?(filename)  
-   puts "Program can not find your inputfile: " + filename + "."
-else  
-   results = ss.getResults(filename)
-end 
+lines = ss.fileLines(srcfile)
+results = ss.getResults(lines)
 
 # Final selection for results and display
 if results.empty?
