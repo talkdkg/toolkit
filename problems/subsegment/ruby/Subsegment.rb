@@ -32,6 +32,9 @@ class Subsegment
 
    def shortestSubsegment(arr)
       shortest = []
+      if arr.empty?
+         return []
+      end
       firstArr = arr[0]
       pos = firstArr.length()-1
       num = 9999 # get max int size for ruby 
