@@ -10,6 +10,7 @@ CV Highlites
 
 Quick Index to Code Sample
 ==========================
+* Amazon Interview Puzzle done in 4 languages -- https://github.com/kyledinh/toolkit/tree/master/problems/subsegment
 * scala            -- https://github.com/kyledinh/taakapp
 * go               -- https://github.com/kyledinh/tekst
 * javascript       -- https://github.com/kyledinh/toolkit/tree/master/mindsweep
@@ -22,3 +23,4 @@ Quick Index to Code Sample
 * bash scripting   -- https://github.com/kyledinh/taakapp/tree/master/appdevkit                   
 * aws              -- https://github.com/kyledinh/toolkit/tree/master/scala
 * jenkins          -- https://buildhive.cloudbees.com/view/My%20Repositories/job/kyledinh/job/kalWebserver/
+* vagrant          -- https://github.com/kyledinh/toolkit/tree/master/vagrant
