@@ -33,7 +33,8 @@ function permute(arr, num, max, pos) {
 
 function count(arr, targ) {
    var occ = 0;
-   for (var i =0; i < arr.length; i++) {
+   var i;
+   for (i = 0; i < arr.length; i++) {
       if (arr[i] === targ) { 
          occ++;
       }
@@ -43,7 +44,7 @@ function count(arr, targ) {
 
 var dice = [0,0,0,0,0]
 var has1 = 0 , has2 = 0, has3 = 0, has4 = 0, has5 = 0;
-var i = 0;
+var i;
   
 for (i = 0; i < 7776; i++) {
    var combo = permute(dice, i, 6, 0);
@@ -55,9 +56,9 @@ for (i = 0; i < 7776; i++) {
    if (count(combo, 2) === 5) { has5++; }
 }
 
-console.log("one :" + has1);
-console.log("two :" + has2);
-console.log("three :" + has3);
-console.log("four :" + has4);
-console.log("five :" + has5);
+console.log("one   : " + has1);
+console.log("two   : " + has2);
+console.log("three : " + has3);
+console.log("four  : " + has4);
+console.log("five  : " + has5);
 
