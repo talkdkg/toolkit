@@ -6,5 +6,6 @@
 *.iml
 *.DS_store
 .idea
+vagrant/.vagrant
 
 __pycache__

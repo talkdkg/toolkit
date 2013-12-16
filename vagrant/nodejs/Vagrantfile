@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+   config.vm.box = "raring64"
+   config.vm.box_url = "http://goo.gl/Y4aRr"
+   config.vm.synced_folder "sharedir", "/home/vagrant/sharedir"
+   config.ssh.forward_x11 = true
+   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+   config.vm.network "forwarded_port", guest: 25, host: 2525, auto_correct: true
+   config.vm.network "private_network", ip: "192.168.10.2"
+   config.vm.provider :virtualbox do |virtualbox|
+      virtualbox.customize ["modifyvm", :id, "--name", "Nodejs"]
+      virtualbox.customize ["modifyvm", :id, "--memory", "1024"]
+   end
+   config.vm.provision :shell, :inline => $startup  
+end
+
+$startup = <<EOF
+   #basic tools 
+   sudo apt-get update
+   sudo apt-get -y install build-essential # g++, make, etc.
+   sudo apt-get -y install git
+   sudo apt-get -y install curl
+   sudo apt-get -y install x11-apps
+    
+   #nodejs v0.10.23 
+   wget http://nodejs.org/dist/v0.10.23/node-v0.10.23.tar.gz
+   tar -xzf node-v0.10.23.tar.gz
+   cd node-v0.10.23
+   ./configure
+   sudo make install
+   mkdir github
+   cd github
+   git clone https://github.com/kyledinh/angularjs-socket-node-chat.git
+EOF
+
