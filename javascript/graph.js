@@ -1,6 +1,22 @@
 /*
  * Kevin Bacon graph
  * Kyle Dinh
+
+   [ 'adam',
+     'betty',
+     'carol',
+     'dave',
+     'ed',
+     'fran',
+     'grace',
+     'helen',
+     'ingrid',
+     'jeff',
+     'kevin' ]
+   edges : 3
+   [ { a: 'adam', b: 'carol' },
+     { a: 'ed', b: 'grace' },
+     { a: 'betty', b: 'grace' } ]
  */
 
 function Edge(node1, node2) {
@@ -13,11 +29,11 @@ function Graph() {
    this.nodes = [];
 }
 
-Graph.prototype.hasEdge = function (edges, vert, node) {
-   for (var i = 0; i < edges.length; i++) {
-      console.log("this edge: " + edges[i].a + " & " + edges[i].b)
-      if (edges[i].a === vert && edges[i].b === node) { return true; }
-      if (edges[i].a === node && edges[i].b === vert) { return true; }
+Graph.prototype.hasEdge = function (vert, node) {
+   for (var i = 0; i < this.edges.length; i++) {
+      //console.log("this edge: " + edges[i].a + " & " + edges[i].b)
+      if (this.edges[i].a === vert && this.edges[i].b === node) { return true; }
+      if (this.edges[i].a === node && this.edges[i].b === vert) { return true; }
    } 
    return false;
 };
@@ -37,20 +53,41 @@ Graph.prototype.addNode = function (str) {
 
 Graph.prototype.addEdge = function (vert, node) {
    if ((this.nodes.indexOf(vert) > -1) && (this.nodes.indexOf(node) > -1)) {
-      if (!this.hasEdge(this.edges, vert, node)) {
+      if (!this.hasEdge(vert, node)) {
          this.edges.push(new Edge(vert, node));
       }
    }
 };
 
+Graph.prototype.getEdges = function (node) {
+   var friends = [];
+   for (var i = 0; i < this.edges.length; i++) {
+      if (this.edges[i].a === node) { friends.push(this.edges[i].b); }
+      if (this.edges[i].b === node) { friends.push(this.edges[i].a); }
+   }
+   return friends;
+}
+
+
 var g = new Graph();
-g.addNode("sam");
-g.addNode("jim");
-g.addEdge("sam","jim");
-g.addEdge("sam","jim");
-g.addEdge("jim","sam");
+g.addNode("adam");
+g.addNode("betty");
+g.addNode("carol");
+g.addNode("dave");
+g.addNode("ed");
+g.addNode("fran");
+g.addNode("grace");
+g.addNode("helen");
+g.addNode("ingrid");
+g.addNode("jeff");
+g.addNode("kevin");
+g.addNode("adam");
+
+g.addEdge("adam","carol");
+g.addEdge("ed","grace");
+g.addEdge("betty","grace");
 console.log(g.nodes);
 console.log("edges : " + g.edges.length);
-console.log(g.edges[0]);
-console.log(g.hasEdge(g.edges, "sam", "jim"));
-
+console.log(g.edges);
+console.log(g.hasEdge("grace", "betty"));
+console.log(g.getEdges("grace"));
