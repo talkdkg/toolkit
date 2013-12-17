@@ -1,11 +1,12 @@
-/* node dice.js v0.10.15
+/* nodejs v0.10.15
  * solves the problem of how many dice will roll a "2" with 5 dice.
  * Kyle Dinh
- * one :3125
- * two :1250
+ * one   :3125
+ * two   :1250
  * three :250
- * four :25
- * five :1
+ * four  :25
+ * five  :1
+ * Getting 2's on 3 or more dice: 276 out of 7,776.
  * 
  * [2][2][2][2][2] = 1/7776
  * [2][2][2][2][*] = 5 * 5 = 25
@@ -18,17 +19,21 @@
  *             3,4
  */
 
+/*jslint devel: true, white: true, indent: 3, node: true */
+//http://www.javascriptlint.com/online_lint.php
+'use strict';
+
 function permute(arr, num, max, pos) {
-   quotient = Math.floor(num / max)
-   remainder = num % max
-   arr[pos] = remainder
+   var quotient = Math.floor(num / max);
+   var remainder = num % max;
+   arr[pos] = remainder;
    if (quotient < max) {
-      arr[pos +1] = quotient
+      arr[pos +1] = quotient;
    }
    if (quotient >= max) {
-      permute(arr, quotient, max, pos +1)
+      permute(arr, quotient, max, pos +1);
    }
-   return arr
+   return arr;
 }
 
 function count(arr, targ) {
@@ -42,13 +47,17 @@ function count(arr, targ) {
    return cnt;
 }
 
-var dice = [0,0,0,0,0]
+/*
+ * Main will permute each combination of 5 dice and count the results
+ */
+
+var dice = [0,0,0,0,0];
 var has1 = 0 , has2 = 0, has3 = 0, has4 = 0, has5 = 0;
-var i;
+var i, combo, total;
 
 // 6^5 = 7776 (six sides ^ 5 dice)
 for (i = 0; i < 7776; i++) {
-   var combo = permute(dice, i, 6, 0);
+   combo = permute(dice, i, 6, 0);
    console.log(combo);
    if (count(combo, 2) === 1) { has1++; }
    if (count(combo, 2) === 2) { has2++; }
@@ -62,5 +71,7 @@ console.log("two   : " + has2);
 console.log("three : " + has3);
 console.log("four  : " + has4);
 console.log("five  : " + has5);
-var total = has3 + has4 + has5;
+
+total = has3 + has4 + has5;
 console.log("Getting 2's on 3 or more dice: " + total + " out of 7,776."); 
+

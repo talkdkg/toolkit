@@ -40,6 +40,10 @@
 
  */
 
+/*jslint devel: true, white: true, indent: 3, node: true */
+//http://www.javascriptlint.com/online_lint.php
+'use strict';
+
 function Edge(node1, node2) {
    this.a = node1;
    this.b = node2;
@@ -56,7 +60,8 @@ function Find(name, deg) {
 }
 
 Graph.prototype.hasEdge = function (vert, node) {
-   for (var i = 0; i < this.edges.length; i++) {
+   var i;
+   for (i = 0; i < this.edges.length; i++) {
       //console.log("this edge: " + edges[i].a + " & " + edges[i].b)
       if (this.edges[i].a === vert && this.edges[i].b === node) { return true; }
       if (this.edges[i].a === node && this.edges[i].b === vert) { return true; }
@@ -86,8 +91,8 @@ Graph.prototype.addEdge = function (vert, node) {
 };
 
 Graph.prototype.getEdges = function (node, deg) {
-   var friends = [];
-   for (var i = 0; i < this.edges.length; i++) {
+   var i, friends = [];
+   for (i = 0; i < this.edges.length; i++) {
       if (this.edges[i].a === node) { friends.push(new Find(this.edges[i].b, deg)); }
       if (this.edges[i].b === node) { friends.push(new Find(this.edges[i].a, deg)); }
    }
@@ -96,20 +101,19 @@ Graph.prototype.getEdges = function (node, deg) {
 
 Graph.prototype.isConnected = function (start, target) {
    var stack = this.getEdges(start, 1);
-   var checked = [];
-   var item;
-   var level = 1;
+   var checked = [], friends = [];
+   var i, item, level = 1;
    while (stack.length > 0) {
       item = stack.pop();
-      if (checked.indexOf(item.node) < 0) {
+      if (checked.indexOf(item.name) < 0) {
          checked.push(item.name);
          if (item.name === target) {
             return item.deg; // returns the degree of seperation (level)
          }
          level = level +1;
-         var friends = this.getEdges(item.name, level);
+         friends = this.getEdges(item.name, level);
          //debugFriends(friends, " in the loop");
-         for (var i = 0; i < friends.length; i++) {
+         for (i = 0; i < friends.length; i++) {
             if (checked.indexOf(friends[i].name) < 0) {
                stack.push(friends[i]);
                console.log(">> " + friends[i].name + " : " + friends[i].deg);
@@ -121,7 +125,8 @@ Graph.prototype.isConnected = function (start, target) {
 };
 
 function debugFriends(friends, str) {
-   for (var i = 0; i < friends.length; i++) {
+   var i;
+   for (i = 0; i < friends.length; i++) {
       console.log(str + " debug: " + friends[i].name + " : " + friends[i].deg);
    }
 } 
