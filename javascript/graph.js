@@ -66,8 +66,33 @@ Graph.prototype.getEdges = function (node) {
       if (this.edges[i].b === node) { friends.push(this.edges[i].a); }
    }
    return friends;
+};
+
+Graph.prototype.isConnected = function (start, target) {
+   var stack = this.getEdges(start);
+   var checked = [];
+   var item;
+   while (stack.length > 0) {
+      item = stack.pop();
+      if (checked.indexOf(item) < 0) {
+         checked.push(item);
+         if (item === target) {
+            return true; 
+         }
+         var friends = this.getEdges(item);
+         for (var i = 0; i < friends.length; i++) {
+            if (checked.indexOf(friends[i]) < 0) {
+               stack.push(friends[i]);
+               console.log(">> " + stack);
+            }
+         }
+      }
+   }
+   return false;
 }
 
+
+// The test
 
 var g = new Graph();
 g.addNode("adam");
@@ -85,9 +110,16 @@ g.addNode("adam");
 
 g.addEdge("adam","carol");
 g.addEdge("ed","grace");
+g.addEdge("carol","betty");
 g.addEdge("betty","grace");
+g.addEdge("betty","kevin");
+g.addEdge("ingrid","helen");
 console.log(g.nodes);
 console.log("edges : " + g.edges.length);
 console.log(g.edges);
 console.log(g.hasEdge("grace", "betty"));
 console.log(g.getEdges("grace"));
+
+console.log("adam is connected to carol: " + g.isConnected("adam", "carol"));
+console.log("adam is connected to kevin: " + g.isConnected("adam", "kevin"));
+console.log("adam is connected to ingrid: " + g.isConnected("adam", "ingrid"));
