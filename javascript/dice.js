@@ -1,4 +1,4 @@
-/* node dice.js
+/* node dice.js v0.10.15
  * solves the problem of how many dice will roll a "2" with 5 dice.
  * Kyle Dinh
  * one :3125
