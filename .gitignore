@@ -9,3 +9,7 @@
 vagrant/.vagrant
 
 __pycache__
+
+javascript/zen.js
+
+javascript/tut.js
