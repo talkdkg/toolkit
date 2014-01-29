@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zillow Address Form</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .top-space { margin-top: 4px; }
+    </style>    
+</head>
+<body onload="pageInit()">
+    <div class="container">    
+    <div id="address_form" class="row">
+        <blockquote>
+            <p>Please enter your address below, Street Address 2 is optional.</p>
+            <p>314 Elm Street<br/>
+                Suite 4D<br/>
+                San Francisco<br/>
+                CA<br/>
+                94110
+            </p>
+        </blockquote>
+        <form name="addressForm" class="form-horizontal">
+            <input type="hidden" name="accountid" value="1299402" />
+            <input type="hidden" name="timestamp" />
+
+            <div class="form-horizontal" role="form">
+                <label for="form_address" class="col-sm-2 control-label">Street Address</label>
+                <div class="col-sm-10">
+                    <input type="small" class="form-control" id="form_address" name="address" placeholder="314 Elm Street"/>
+                </div>
+
+                <label for="form_address2" class="col-sm-2 control-label">Street Address 2</label>
+                <div class="col-sm-10">
+                    <input type="small" class="form-control" id="form_address2" name="address2" placeholder="optional"/>
+                </div>
+
+                <label for="form_city" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                    <input type="small" class="form-control" id="form_city" name="city" placeholder="San Francisco"/>
+                </div>
+
+                <label for="form_address" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <select id="form_state" class="form-control" name="state" />
+                        <option id="state_option" value="">......</option>
+                    </select>
+                </div>
+
+                <label for="form_zipcode" class="col-sm-2 control-label">Zipcode</label>
+                <div class="col-sm-10">
+                    <input type="small" class="form-control" id="form_zipcode" name="zipcode" placeholder="94110"/>
+                </div>   
+                               
+                <label for="form_button" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">             
+                    <button id="form_button" class="btn btn-primary top-space" onclick="validateForm(); return false;">Submit</button>
+                </div>
+            </div><!-- form-horizontal -->
+        </form>
+
+    </div><!-- address_form -->
+
+
+    <div id="toolbox" style="display:none">
+        <div class="alert alert-danger top-space" id="error_msg" class="error_msg"></h4>
+    </div>
+
+    </div><!-- main container -->
+
+    <div class="container" id="validation_msg">
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="js/kjs.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
