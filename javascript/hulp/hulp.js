@@ -1,6 +1,6 @@
 /*
  * Hulp - Helper Util Library in Practice 
- * github.com/kyledinh/toolkit/javasript/hulp/
+ * https://github.com/kyledinh/toolkit/tree/master/javascript/hulp
  */
 /*jslint devel: true, white: true */
 
@@ -25,11 +25,24 @@
             var key, methods = [];
             for (key in obj) {
                 if (typeof obj[key] == 'function') {
-                   methods.push(key);
+                    methods.push(key);
                 }
             }
             return methods;
         };
+
+	/* TODO write test */
+	this.hulp.getType = function(obj) {
+            var con = obj.constructor;  // returns a Function 
+	    return con.toString().substring(str.indexOf(' ')+1, str.indexOf('('));
+	}
+
+	/* TODO write test, this is an alt version of getType() */
+	this.hulp.getClass = function(obj) {
+  	    if (typeof obj === "undefined") { return "undefined"; }
+            if (obj === null) { return "null"; }
+            return Object.prototype.toString.call(obj).match(/^\[object\s(.*)\]$/)[1];
+	}
 
         this.hulp.toString = function() {
             console.log("Hulp - Helper Util -- uses:");
