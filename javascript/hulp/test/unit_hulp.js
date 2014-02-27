@@ -1,3 +1,5 @@
+/* requires: https://github.com/kyledinh/toolkit/tree/master/javascript/hulp.js */
+
 'use strict';
 var DEBUG;
 
@@ -10,8 +12,8 @@ describe('MASTER HULP UNIT TEST: ', function() {
       d: function() { return true;} 
    };
 
-   describe('getType from Object', function() {
-      it('gets a class', function() {
+   describe("getType from Object", function() {
+      it("'gets the object type", function() {
          console.log(hulp.getType(""));
          expect(hulp.getType("")).toBe("String");
          expect(hulp.getType(true)).toBe("Boolean");
@@ -28,8 +30,8 @@ describe('MASTER HULP UNIT TEST: ', function() {
       });
    });
 
-   describe('getClass from Object', function() {
-      it('gets a class', function() {
+   describe("getClass from Object", function() {
+      it("gets a class", function() {
          expect(hulp.getClass("")).toBe("String");
          expect(hulp.getClass(true)).toBe("Boolean");
          expect(hulp.getClass(0)).toBe("Number");
@@ -45,8 +47,8 @@ describe('MASTER HULP UNIT TEST: ', function() {
       });
    });
 
-   describe('getProperties from Object', function() {
-      it('do something', function() {
+   describe("getProperties from Object", function() {
+      it("returns an array of keys", function() {
          var result = hulp.getProperties(testObj);
          console.log("============= " + result);
          var z = ['a', 'b', 'c'];
@@ -57,8 +59,8 @@ describe('MASTER HULP UNIT TEST: ', function() {
       });
    });
 
-   describe('getMethods from Object', function() {
-      it('do something', function() {
+   describe("getMethods from Object", function() {
+      it("returns array of method names", function() {
          var result = hulp.getMethods(testObj);
          console.log("============= " + result);
          var z = ['d'];
@@ -69,14 +71,14 @@ describe('MASTER HULP UNIT TEST: ', function() {
       });
    });
 
-   describe('test the dev log feature', function() {
-      it('do something', function() {
-         expect(hulp.dev("TEST")).toBe(false);
+   describe("test the debug log feature", function() {
+      it("checks for DEBUG global var in use of help.debug()", function() {
+         expect(hulp.debug("TEST")).toBe(false);
          DEBUG = true;  // declare in Global Scope
-         expect(hulp.dev("Testing hulp.dev, works.")).toBe(true);      
+         expect(hulp.debug("Testing hulp.debug, works.")).toBe(true);      
          DEBUG = false;
-         expect(hulp.dev("TEST")).toBe(false);      
-         console.log("PASSED: hulp.dev");                      
+         expect(hulp.debug("TEST")).toBe(false);      
+         console.log("PASSED: hulp.debug");                      
       });
    });
 

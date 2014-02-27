@@ -12,7 +12,7 @@
 
         this.hulp = {};
 
-        this.hulp.dev = function(str) {
+        this.hulp.debug = function(str) {
             if (typeof DEBUG !== "undefined") {
                 if (DEBUG !== false) {
                     console.log(str);              
@@ -57,6 +57,7 @@
             console.log("hulp.getMethods(obj)");
             console.log("hulp.getClass(obj)");
             console.log("hulp.getType(obj)");   
+            console.log("hulp.debug(str) returns true/false if DEBUG is set; if true: console.log(str)");
         };
 
         this.hulp.help = this.hulp.toString;
