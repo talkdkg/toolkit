@@ -8,7 +8,7 @@ var str = "This is a string";
 var type = hulp.getType(str);         // 'String'
 
 delete DEBUG;                         // delete from Global Scope
-hulp.debug("type of obj: " + type);   // returns false, dosen't log to console
+hulp.debug("type of obj: " + type);   // returns false, doesn't log to console
 DEBUG = true;                         // sets DEBUG
 hulp.debug("type of obj: " + type);   // returns true, logs "type of obj: String" to console.log
 
@@ -30,7 +30,7 @@ help()              | same as toString() |
 
 ## Dev Notes
 
-* Includes Karma unit tests
+* Includes Karma unit tests - unittest.sh
 * Feel free to copy and extend for you own use
 * I used NodeJS to write this 
 * Author: github.com/kyledinh
