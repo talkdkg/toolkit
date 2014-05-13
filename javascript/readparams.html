@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Red Bridge IO - HTML5 Template</title>
+    <meta name="description" content="The HTML5 Template">
+    <meta name="author" content="Red Bridge IO">
+</head>
+
+<body>
+<h3>Hash : <span id="output"></span></h3>
+
+<h4 id="search">search</h3>
+<br/>
+<br/>
+<ul>
+    <li><a href="readparams.html#gold?foo=star">Gold Star</a></li>
+    <li><a href="readparams.html#silver?foo=pulse">Silver Pulse</a></li>
+</ul>
+
+<script>
+    var urlParams;
+
+    // This is a fix to parse for urls with '#' e.g.  page.html#company?tag=bummble
+    // Without the leading '?'
+    function getSearchFromLocation (url) {
+        //var url = urlstr || String(window.location);
+        var url = url ? String(url) : String(window.location);
+        var q_pos = url.indexOf('?');
+        if (q_pos > -1) {
+            return url.slice(q_pos +1);
+        }
+        return "";
+    }
+
+    (window.onload = function () {
+    //(window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            //query  = window.location.search.substring(1);
+            query = getSearchFromLocation();
+            console.log("query : " + query); 
+
+        urlParams = {};
+        while (match = search.exec(query)) {
+            urlParams[decode(match[1])] = decode(match[2]);
+        }
+    })();
+
+    var hash_pos = window.location.toString().indexOf('#');
+    var question_pos =  window.location.toString().indexOf('?');
+
+    if (hash_pos > -1) {
+        if (question_pos > hash_pos) {
+            urlParams["hash"] = window.location.toString().substring(hash_pos +1, question_pos);
+        } else {
+            urlParams["hash"] = window.location.toString().substring(hash_pos +1);
+        }
+        console.log("hash: " + urlParams["hash"]);
+    }
+
+    if ("hash" in urlParams) {
+        window.location.hash = urlParams["hash"];      
+    }
+
+    if ("foo" in urlParams) {
+        document.getElementById("search").textContent = urlParams["foo"];
+        //alert("search: " + getSearchFromLocation(window.location));
+    }
+
+</script>
+</body>
+</html>
