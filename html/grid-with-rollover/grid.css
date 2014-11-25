@@ -1,0 +1,349 @@
+.container {
+    max-width: 1170px;
+}
+.clearfix {
+	zoom: 1;
+}
+.clearfix:before,.clearfix:after {
+	content: "";
+	display: table;
+	line-height: 0;
+}
+.clearfix:after {
+	clear: both;
+}
+.hide-text {
+	background-color: transparent;
+	border: 0;
+	color: transparent;
+	font: 0/0 a;
+	text-shadow: none;
+}
+.input-block-level {
+	box-sizing: border-box;
+	display: block;
+	min-height: 30px;
+	moz-box-sizing: border-box;
+	width: 100%;
+}
+.vertical-shadow {
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #aaa;
+	box-shadow: 0 1px 3px #ccc;
+}
+/*
+#credits dt
+{
+	float: left;
+	font-weight: bold;
+	margin-right: 1ex;
+}
+#credits dd:before
+{
+	content: "- ";
+}
+.intern-class
+{
+	display: block;
+}
+.navigation-by-year
+{
+	position: fixed;
+	right: 20px;
+	top: 432px;
+	width: auto;
+}
+.navigation-by-year.fixed
+{
+	top: 150px;
+}
+.navigation-by-year .nav-year-item
+{
+	text-align: center;
+}
+.navigation-by-year .nav-year-item a
+{
+	color: #49a88f;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 30px;
+	text-decoration: none;
+}
+.navigation-by-year .nav-year-item a:hover
+{
+	opacity: .5;
+}
+.navigation-by-year .nav-year-item.active a
+{
+	color: #999;
+}
+.navigation-by-year .nav-year-item.active a:hover
+{
+	cursor: default;
+	opacity: 1.0;
+}
+.employee-search
+{
+	border: 0;
+	height: 50px;
+	width: 100%;
+	z-index: 3;
+}
+.employee-search #employee-search-box
+{
+	background: 0;
+	border: 0;
+	font-size: 20px;
+	height: 50px;
+	margin-bottom: 10px;
+	outline: 0;
+	text-align: center;
+	width: 100%;
+}
+.employee-search.fixed
+{
+	background: rgba(255,255,255,0.9);
+	left: 0;
+	position: fixed;
+	top: 0;
+}
+#downloads
+{
+	padding-bottom: 36px;
+}
+.dvd-list
+{
+	float: left;
+	margin-right: 2%;
+	min-height: 180px;
+	width: 23%;
+}
+#contribute
+{
+	text-align: justify;
+}
+.lte7 #contribute
+{
+	position: static;
+}
+#contribute .simple-button .with-icon
+{
+	float: left;
+	margin-right: 10px;
+	width: auto;
+}
+#contribute .simple-button .with-icon img
+{
+	position: relative;
+	top: -2px;
+}
+#credits dl
+{
+	font-size: 14px;
+	margin-left: 23px;
+}
+#credits dt
+{
+	float: left;
+	font-weight: bold;
+	margin-right: 1ex;
+}
+#credits dd:before
+{
+	content: "- ";
+}
+
+*/
+
+#the-team .section-header {
+	padding-top: 18px;
+}
+#the-team .general-contact ul {
+	margin-bottom: 18px;
+}
+#the-team .general-contact ul li {
+	margin-bottom: 10px;
+}
+#the-team .portrait-container {
+	box-sizing: border-box;
+	margin: 0 auto;
+	moz-box-sizing: border-box;
+	overflow: hidden;
+	padding: 0 0 300px 0;
+	text-align: center;
+	width: 94%;
+}
+#the-team .portrait-container .team-card .card-photo {
+	transition: opacity .5s;
+	webkit-transition: opacity .5s;
+}
+#the-team .portrait-container.over-team-card .team-card {
+	cursor: pointer;
+}
+#the-team .portrait-container.over-team-card .team-card .card-photo {
+	opacity: .5;
+}
+#the-team .portrait-container.over-team-card .team-card:hover .card-photo {
+	opacity: 1.0;
+}
+#the-team .portrait-container.over-team-card .team-card:hover .card-info {
+	cursor: default;
+	display: block;
+}
+#the-team .portrait-container.over-team-card .card-photo:hover .normal {
+	display: none;
+}
+#the-team .portrait-container.over-team-card .card-photo:hover .alternate {
+	display: block;
+}
+#the-team .team-card {
+	display: inline-block;
+	margin: 0 15px 15px 0;
+	min-height: 267px;
+	position: relative;
+	width: 200px;
+}
+#the-team .team-card .card-photo {
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 200px;
+}
+#the-team .team-card .card-photo img {
+	display: block;
+	height: 267px;
+	width: 200px;
+}
+#the-team .team-card .card-photo img.alternate {
+	display: none;
+}
+#the-team .team-card .card-info {
+	background: white;
+	display: none;
+	min-height: 277px;
+	padding: 15px 5px 10px 5px;
+	position: absolute;
+	top: 267px;
+	z-index: 2;
+}
+#the-team .team-card .card-info h2,#the-team .team-card .card-info h3 {
+	color: #314451;
+	text-align: center;
+}
+#the-team .team-card .card-info h2 {
+	font-size: 23px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+#the-team .team-card .card-info h3 {
+	font-size: 16px;
+	font-weight: 100;
+	margin-bottom: 10px;
+}
+#the-team .team-card .card-info p {
+	color: #314451;
+	font-size: 13px;
+	line-height: 16px;
+	margin: 0;
+	margin-bottom: 10px;
+	overflow: hidden;
+	text-align: left;
+}
+#the-team .team-card .card-info .contact-links {
+	text-align: center;
+}
+#the-team .team-card .card-info .contact-links a,.general-contact a {
+	display: inline-block;
+	height: 30px;
+	margin-left: 7px;
+	text-decoration: none;
+	width: 30px;
+}
+#the-team .team-card .card-info .contact-links a:hover,.general-contact a:hover {
+	opacity: .5;
+}
+#the-team .team-card .card-info .contact-email,.general-contact .contact-email {
+	background: url("data:image/png;
+	background-size: cover;
+}
+#the-team .team-card .card-info .contact-twitter {
+	background: url("data:image/png;
+	background-size: cover;
+}
+#the-team .team-card .card-info .contact-blog {
+	background: url("data:image/png;
+	background-size: cover;
+}
+#the-team .team-card .card-info .contact-home {
+	background: url("data:image/png;
+	background-size: cover;
+}
+#the-team .team-card .card-info .contact-ka {
+	background: url("data:image/png;
+	background-size: cover;
+}
+
+#about-us {
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+.title-section {
+	background-color: #5cd0b3;
+	box-sizing: border-box;
+	moz-box-sizing: border-box;
+	padding: 40px 0;
+	text-align: center;
+	width: 100%;
+}
+.title-section .title-container {
+	color: white;
+	margin: 0 auto;
+	padding: 50px 0;
+	width: 700px;
+}
+.title-section .title-container h1.title {
+	color: white;
+	font-size: 52px;
+	line-height: 59px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+.title-section .title-container .apply-button {
+	border: 2px solid;
+	border-radius: 30px;
+	color: white;
+	display: block;
+	font-size: 20px;
+	margin: 0 auto;
+	padding: 12px 20px;
+	text-decoration: none;
+	width: 200px;
+}
+.title-section .title-container .apply-button:hover {
+	background: white;
+	border-color: #5cd0b3;
+	color: #5cd0b3;
+	cursor: pointer;
+}
+.title-section .subtitle-container {
+	color: #314453;
+	font-size: 20px;
+	height: 10%;
+	line-height: 30px;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;
+}
+.title-section .subtitle-container a {
+	color: white;
+}
+.title-section .subtitle-container .subtitle-column {
+	display: inline-block;
+	height: 10%;
+	padding: 0 1%;
+	text-align: left;
+	vertical-align: top;
+	width: 44%;
+}
+
