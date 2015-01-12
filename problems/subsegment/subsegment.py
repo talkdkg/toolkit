@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import math
 import pprint
+import os.path
 import sys
 
 def trimWords(words):
@@ -54,69 +55,79 @@ def shortestSubsegment(arr):
 ## keywordArr holds the wanted elements for the sub-segment
 ## segmentArr is the master segment or source segment
 
-lines = readFileToArray('input.txt')
-depth = int(lines[0])
-keywordArr = lines[1:depth+1]
-segmentArr = trimWords(lines[depth+1]).split(' ')
-breath = maxCountInArrays(keywordArr, segmentArr) 
+if __name__ == "__main__":
+   sourcetextfile = 'input.txt'
+   if len(sys.argv) > 1:
+      if os.path.isfile(sys.argv[1]) == False:      
+         sourcetextfile = sys.argv[1]
+         print("invalid source file: ", sys.argv[1])
+         sys.exit()
 
-# Build matrix with the default -1 value
-matrix = [[-1 for i in range(breath)] for i in range(depth)]
+   print("input file: ", sourcetextfile)
 
-print("depth: ", depth)
-print("breath: ", breath)
-print(len(lines))
-print("src 1: ", segmentArr[0])
+   lines = readFileToArray('input.txt')
+   depth = int(lines[0])
+   keywordArr = lines[1:depth+1]
+   segmentArr = trimWords(lines[depth+1]).split(' ')
+   breath = maxCountInArrays(keywordArr, segmentArr) 
 
-pprint.pprint(matrix)
-pprint.pprint(keywordArr)
-pprint.pprint(segmentArr)
+   # Build matrix with the default -1 value
+   matrix = [[-1 for i in range(breath)] for i in range(depth)]
 
-# Update matrix with index of keyword finds
+   print("depth: ", depth)
+   print("breath: ", breath)
+   print(len(lines))
+   print("src 1: ", segmentArr[0])
 
-for x in range(0, depth):
-   y = 0
-   for i in range(0, len(segmentArr)):
-      if segmentArr[i] == keywordArr[x]:
-         print("Found x: " + str(x) + " y: " + str(y) + " @ " + str(i) + "  " + str(segmentArr[i]) + " for " + str(keywordArr[x]))
-         matrix[x][y] = i
-         y += 1  
+   pprint.pprint(matrix)
+   pprint.pprint(keywordArr)
+   pprint.pprint(segmentArr)
 
-for x in range(0, depth):
-   print(" row of matrix for  " + " ".join(str(i) for i in matrix[x]))
+   # Update matrix with index of keyword finds
 
-pprint.pprint(matrix)
-permutation = [0]*depth
-pprint.pprint(permutation)
+   for x in range(0, depth):
+      y = 0
+      for i in range(0, len(segmentArr)):
+         if segmentArr[i] == keywordArr[x]:
+            print("Found x: " + str(x) + " y: " + str(y) + " @ " + str(i) + "  " + str(segmentArr[i]) + " for " + str(keywordArr[x]))
+            matrix[x][y] = i
+            y += 1  
 
-results = []
-num_possible = int(math.pow(breath, depth))
+   for x in range(0, depth):
+      print(" row of matrix for  " + " ".join(str(i) for i in matrix[x]))
 
-print("total possible: " + str(num_possible))
+   pprint.pprint(matrix)
+   permutation = [0]*depth
+   pprint.pprint(permutation)
 
-for x in range(0, num_possible):
-   #arr = [-1 for x in range(depth)]
-   n = depth+1
-   arr = [-1]*n
-   combo = permute(permutation, x, breath, 0)
+   results = []
+   num_possible = int(math.pow(breath, depth))
 
-   for i in range(0, depth):
-      c = int(combo[i])
-      arr[i] = matrix[i][c]
+   print("total possible: " + str(num_possible))
 
-   distance = max(arr[0:depth]) - min(arr[0:depth])
-   arr[depth] = distance
+   for x in range(0, num_possible):
+      #arr = [-1 for x in range(depth)]
+      n = depth+1
+      arr = [-1]*n
+      combo = permute(permutation, x, breath, 0)
 
-   if (-1 not in arr):
-      results.append(arr)
+      for i in range(0, depth):
+         c = int(combo[i])
+         arr[i] = matrix[i][c]
 
-## Outputing the results
+      distance = max(arr[0:depth]) - min(arr[0:depth])
+      arr[depth] = distance
 
-pprint.pprint(results)
-print("Number of possible combos: " + str(len(results)))
+      if (-1 not in arr):
+         results.append(arr)
 
-if len(results) == 0:
-   print("NO SUBSEGMENT FOUND")
-else:
-   print(shortestSubsegment(results))
+   ## Outputing the results
+
+   pprint.pprint(results)
+   print("Number of possible combos: " + str(len(results)))
+
+   if len(results) == 0:
+      print("NO SUBSEGMENT FOUND")
+   else:
+      print(shortestSubsegment(results))
 
