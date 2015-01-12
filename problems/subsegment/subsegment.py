@@ -51,6 +51,7 @@ def shortestSubsegment(arr):
          shortest = combo
    return shortest
 
+
 ## Written by: Kyle Dinh @ https://github.com/kyledinh/toolkit/tree/master/problems/subsegment 
 ## keywordArr holds the wanted elements for the sub-segment
 ## segmentArr is the master segment or source segment
@@ -58,14 +59,15 @@ def shortestSubsegment(arr):
 if __name__ == "__main__":
    sourcetextfile = 'input.txt'
    if len(sys.argv) > 1:
-      if os.path.isfile(sys.argv[1]) == False:      
+      if os.path.isfile(sys.argv[1]):      
          sourcetextfile = sys.argv[1]
+      else:   
          print("invalid source file: ", sys.argv[1])
          sys.exit()
 
    print("input file: ", sourcetextfile)
 
-   lines = readFileToArray('input.txt')
+   lines = readFileToArray(sourcetextfile)
    depth = int(lines[0])
    keywordArr = lines[1:depth+1]
    segmentArr = trimWords(lines[depth+1]).split(' ')
