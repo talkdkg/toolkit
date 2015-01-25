@@ -15,7 +15,6 @@ func arrCharToInt (charArr : [Character]) -> [Int] {
 			intArr.append(num!)
 		}
 	}
-
 	return intArr
 }
 
