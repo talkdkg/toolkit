@@ -12,8 +12,12 @@
 		275AB4311A8411CF000EEB13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275AB42F1A8411CF000EEB13 /* Main.storyboard */; };
 		275AB4331A8411CF000EEB13 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275AB4321A8411CF000EEB13 /* Images.xcassets */; };
 		275AB4361A8411CF000EEB13 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275AB4341A8411CF000EEB13 /* LaunchScreen.xib */; };
-		275AB4421A8411CF000EEB13 /* CalcAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB4411A8411CF000EEB13 /* CalcAppTests.swift */; };
 		275AB44C1A841387000EEB13 /* Calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB44B1A841387000EEB13 /* Calc.swift */; };
+		27C00F9B1A86D73300797DF1 /* CalcAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB4411A8411CF000EEB13 /* CalcAppTests.swift */; };
+		27C00F9E1A86D77200797DF1 /* Calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB44B1A841387000EEB13 /* Calc.swift */; };
+		27C00F9F1A86D77800797DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB42B1A8411CF000EEB13 /* AppDelegate.swift */; };
+		27C00FA01A86D79200797DF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275AB42D1A8411CF000EEB13 /* ViewController.swift */; };
+		27C00FA21A86D96C00797DF1 /* CalcUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C00FA11A86D96C00797DF1 /* CalcUnitTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,7 @@
 		275AB4401A8411CF000EEB13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275AB4411A8411CF000EEB13 /* CalcAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcAppTests.swift; sourceTree = "<group>"; };
 		275AB44B1A841387000EEB13 /* Calc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calc.swift; sourceTree = "<group>"; };
+		27C00FA11A86D96C00797DF1 /* CalcUnitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcUnitTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,7 @@
 			children = (
 				275AB4411A8411CF000EEB13 /* CalcAppTests.swift */,
 				275AB43F1A8411CF000EEB13 /* Supporting Files */,
+				27C00FA11A86D96C00797DF1 /* CalcUnitTest.swift */,
 			);
 			path = CalcAppTests;
 			sourceTree = "<group>";
@@ -225,7 +231,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275AB4421A8411CF000EEB13 /* CalcAppTests.swift in Sources */,
+				27C00F9F1A86D77800797DF1 /* AppDelegate.swift in Sources */,
+				27C00FA21A86D96C00797DF1 /* CalcUnitTest.swift in Sources */,
+				27C00F9E1A86D77200797DF1 /* Calc.swift in Sources */,
+				27C00FA01A86D79200797DF1 /* ViewController.swift in Sources */,
+				27C00F9B1A86D73300797DF1 /* CalcAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +423,7 @@
 				275AB4471A8411CF000EEB13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		275AB4481A8411CF000EEB13 /* Build configuration list for PBXNativeTarget "CalcAppTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +432,7 @@
 				275AB44A1A8411CF000EEB13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

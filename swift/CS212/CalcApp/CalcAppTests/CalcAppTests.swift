@@ -21,9 +21,31 @@ class CalcAppTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testViewController() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        var v = ViewController()
+        v.dspScreen = UILabel()
+        
+        v.key_num_3()
+        v.key_num_4()
+        XCTAssert(v.calc.inputs[0] == 34, "Pass insert numbers")
+        v.key_plus()
+        v.key_num_2()
+        XCTAssert(v.calc.inputs[1] == 2, "Pass second input")
+        v.key_equal()
+        XCTAssert(v.dspScreen.text == "36", "Pass add total")
+        v.key_clear()
+        XCTAssert(v.dspScreen.text == "0", "Pass clear total")
+
+        v.key_num_9()
+        v.key_num_9()
+        XCTAssert(v.calc.inputs[0] == 99, "Pass insert numbers")
+        v.key_minus()
+        v.key_num_8()
+        XCTAssert(v.calc.inputs[1] == 8, "Pass second input")
+        v.key_equal()
+        XCTAssert(v.dspScreen.text == "91", "Pass second total")
+        
     }
     
     func testPerformanceExample() {
