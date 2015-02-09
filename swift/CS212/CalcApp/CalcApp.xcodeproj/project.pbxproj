@@ -85,12 +85,12 @@
 			isa = PBXGroup;
 			children = (
 				275AB42B1A8411CF000EEB13 /* AppDelegate.swift */,
+				275AB44B1A841387000EEB13 /* Calc.swift */,
 				275AB42D1A8411CF000EEB13 /* ViewController.swift */,
 				275AB42F1A8411CF000EEB13 /* Main.storyboard */,
 				275AB4321A8411CF000EEB13 /* Images.xcassets */,
 				275AB4341A8411CF000EEB13 /* LaunchScreen.xib */,
 				275AB4291A8411CF000EEB13 /* Supporting Files */,
-				275AB44B1A841387000EEB13 /* Calc.swift */,
 			);
 			path = CalcApp;
 			sourceTree = "<group>";
@@ -107,8 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				275AB4411A8411CF000EEB13 /* CalcAppTests.swift */,
-				275AB43F1A8411CF000EEB13 /* Supporting Files */,
 				27C00FA11A86D96C00797DF1 /* CalcUnitTest.swift */,
+				275AB43F1A8411CF000EEB13 /* Supporting Files */,
 			);
 			path = CalcAppTests;
 			sourceTree = "<group>";
