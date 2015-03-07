@@ -71,6 +71,11 @@ class ViewController: UIViewController {
         dspRefresh()
     }
     
+    @IBAction func key_press (sender :UIButton) {
+        println(sender.titleLabel!.text!)
+        dspScreen.text = sender.titleLabel!.text!
+    }
+    
     func dspRefresh () {
         dspScreen.text = calc.display
     }
