@@ -31,7 +31,7 @@ Video of Golang techtalk
 
 > This is a handy mobile app to score keep for billiard league matches. Handles various details for handicapped matches.
 
-<img src="img/8ballscorericon.png" style="border-radius: 80px">
+<img src="img/8ballscorericon.png" height="96px" weight="96px" style="border-radius: 20px">
 
 * https://itunes.apple.com/us/app/8ball-scorer-free/id989644353?mt=8
 * Written in Native IOS/Swift
