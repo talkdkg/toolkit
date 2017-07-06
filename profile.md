@@ -6,7 +6,7 @@ As an application developer, I have over a decade of experience with many differ
 
 <img src="https://github.com/kyledinh/journ/raw/master/assets/icons8-Octopus-96.png" title="Octopus" width="96" height="96">
 
-> Journ is a Node package is based on my style of journaling, where I like to store notes in markdown format. With each day in it's own file and stored as text files, I could easy search and view them from my command line and easily back them up to GitHub for archiving. With Journ, I rebuilt the bash scripts I used to organize my files to a Javascript Node package to share in open source.
+> Journ is a Node package based on my style of journaling, where I like to store notes in markdown format. With each day in it's own file and stored as text files, I could easy search and view them from my command line and easily back them up to GitHub for archiving. With Journ, I rebuilt the bash scripts I used to organize my files to a Javascript Node package to share in open source.
 
 * https://www.npmjs.com/package/journ
 * Stores each day as its own .md file
