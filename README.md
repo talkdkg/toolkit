@@ -1,4 +1,4 @@
-CV Highlites 
+CV Highlites
 ============
 
 1. Website: http://kyledinh.com
@@ -6,9 +6,8 @@ CV Highlites
 3. Gongfu Project: https://github.com/kyledinh/gongfu - Seed Application for Angular with Golang backend and Postgres
 4. Tekst Project illustrates use of Twitter Bootstrap (Responsive CSS), Go Lang, Javascript, Ruby On Rail, RESTful API, d3JS: https://github.com/kyledinh/tekst and to the demo: http://kyledinh.com:8000
 5. TaakApp is written for Scala and uses Postgres: https://github.com/kyledinh/taakapp
-6. NodeJS project with Angular, SocketIO: https://github.com/kyledinh/node-chat and to the demo: http://kyledinh.com:8080/
 7. Toolkit has a wiki for all my notes: https://github.com/kyledinh/toolkit/wiki/_pages
-8. CV Online: https://gist.github.com/kyledinh/97f6aeabb5dbe7b34df3
+8. CV Online:
 9. Bitcoin Address: 1DHBBMqtkAJ24EpFSdgtdQFb2mG1CXvds4
 
 Quick Index to Code Sample
