@@ -1,6 +1,6 @@
 # Development Profile
 
-As an application developer, I have over a decade of experience with many different clients/companies with varying projects using many different technologies. I've taken projects from concept to development to deployment; from the backend to the frontend. There's some current highlights of my open sourced work.
+As an application developer, I have over a decade of experience with many different clients/companies with varying projects using many different technologies. I've taken projects from concept to development to deployment; from the backend to the frontend. Here are some current highlights of my open sourced work.
 
 ## Journ
 
@@ -12,7 +12,7 @@ As an application developer, I have over a decade of experience with many differ
 * Has tools to combine days into weeks for reports and export to pdf
 
 ## Gongfu
-> A template for a RESTful API project, where the front end and back end are built with Grunt in a virtual dev environment. The example application is a simple Twitter clone.
+> A template for a RESTful API project, where the front end and back end are built with Grunt in a virtual dev environment. The example application is a simplified Twitter clone.
 
 [![VIDEO](http://img.youtube.com/vi/0arV-k8OPMg/0.jpg)](http://www.youtube.com/watch?v=0arV-k8OPMg)
 
