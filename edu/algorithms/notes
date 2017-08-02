@@ -1,7 +1,0 @@
-http://www.cs.princeton.edu/~rs/AlgsDS07/
-http://introcs.cs.princeton.edu/java/home/
-
-
-#Example of compiliing with the stdlib.jar
-javac -cp lib/stdlib.jar BinarySearch.java
-
