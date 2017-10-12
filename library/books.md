@@ -4,6 +4,7 @@
 * [Food](#food)
 * [Health and Diet](#health-and-diet)
 * [History](#history)
+* [Science](#science)
 * [Social Studies](#social-studies)
 * [Technical](#technical)
 
@@ -16,14 +17,14 @@
 | Cooked | Michael Pollan ||
 | In Defense of Food | Michael Pollan ||
 | Omnivore's Dilemma | Michael Pollan | |
-| Meatonomics | David Simon || 
+| Meatonomics | David Simon ||
 | Meathooked | Marta Zaraska ||
 
 ## Health and Diet
 
 | Name | Author | Desc |
 |------|--------|------|
-| The China Study | T Colin Campbell | | 
+| The China Study | T Colin Campbell | |
 | Proteinaholic | Garth Davis | |
 | Preventing and Reversing Heart Disease | Caldwell Esselstyn | |
 | The Starch Solution | John McDougall | |
@@ -52,11 +53,16 @@
 | Outliers | Malcolm Gladwell ||
 | The Know It All | AJ Jacobs ||
 | The Year of Living Bibically | AJ Jacobs ||
-
+| Assassination Vacation | Sarah Vowell ||
 
 
 
 ## Technical
+
+| Name | Author | Desc |
+|------|--------|------|
+| Algorithms | Robert Sedgewick ||
+| The Pragmatic Programmer: From Journeyman to Master | Andrew Hunt ||
 
 ## Reading List
 
@@ -66,6 +72,9 @@
 | The Emperor of All Maladies | Siddhartha Mukherjee ||
 | Legacy of Ashes | Tim Weiner ||
 | Sapiens: A Brief History of Humankind | Yuval Harari ||
-
-
-
+| At Home: A Short History of Private Life | Bill Bryson ||
+| The Year 1000: What Life Was Like at the Turn of the First Millennium | Robert Lacey, Danny Danziger | |
+| The Time Traveller's Guide to Elizabethan England | Ian Mortimer ||
+| Battle Cry of Freedom: The Civil War Era | James M. McPherson ||
+| Lincoln | David Herbert Donald ||
+| Thomas Jefferson: The Art of Power | Jon Meacham ||
